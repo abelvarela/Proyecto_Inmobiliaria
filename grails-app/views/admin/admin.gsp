@@ -5,6 +5,7 @@
   </head>  
   <body>
 	<h1><g:link action="cliente">Cliente</g:link></h1>
+  <h1><g:link action="propietario">Propietario</g:link></h1>
 
     <%-- <g:form action="buscarCliente" method="POST">
         <label for="dni">Dni: </label>
@@ -17,7 +18,7 @@
         <g:link action="index">Mostrar todos</g:link>
     </g:form>
 
-
+    
 
 
 
@@ -37,5 +38,24 @@
           </tr>
       </g:each>
   </table> --%>
+
+
+<g:form action="prueba" method="POST">
+    <label>Clientes: </label>
+    <select name ="cli">
+        <g:each in="${listado?}">   
+            <option value="${it.id}"> ${it.nombre} </option>
+        </g:each>
+    </select><br>
+    <g:submitButton name="search" class="search" value="Enviar"/>
+    <g:link action="index">Mostrar todos</g:link>
+</g:form>
+
+
+
+
+
+
+
   </body>  
 </html>

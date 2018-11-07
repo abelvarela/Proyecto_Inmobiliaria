@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html>  
 <%-- <head>
-    <title>Alta Cliente</title>
+    <title>Alta Propietario</title>
 </head>   --%>
 
 <head>
     <meta name="layout" content="main" />
-    <g:set var="entityName" value="${message(code: 'cliente.label', default: 'Cliente')}" />
-    <title>Ver Cliente</title>
+    <g:set var="entityName" value="${message(code: 'propietario.label', default: 'Propietario')}" />
+    <title>Ver Propietario</title>
 </head>
 <body>
-    <h1><g:link action="cliente">Ver Cliente</g:link></h1>  
+    <h1><g:link action="propietario">Ver Propietario</g:link></h1>  
 
 
-    <%-- <div id="show-cliente" class="content scaffold-show" role="main"> --%>
+    <%-- <div id="show-propietario" class="content scaffold-show" role="main"> --%>
         <%-- <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
         </g:if> --%>
 
         
         <%-- aqui se muestra todo, medio pelo --%>
-        <f:display bean="cliente"  />
-        <label>Contratos: </label>
-        <g:each in="${cliente.contratos?}">
+        <f:display bean="propietario"  />
+        <%-- <label>Contratos: </label>
+        <g:each in="${propietario.contratos?}">
             ${it.monto}
-        </g:each>        
+        </g:each>         --%>
         <br>
         
-        <%-- <g:link action="eliminarCliente" id="${cliente.id}">Eliminar</g:link> --%>
+        <%-- <g:link action="eliminarPropietario" id="${propietario.id}">Eliminar</g:link> --%>
     <%-- </div> --%>
 
 
 
     <%-- editar o eliminar --%>
-    <g:form action="confirmarEliminarCliente" id="${cliente.id}" method="POST">
-            <g:link action="editarCliente" id="${cliente.id}">Editar</g:link>
+    <g:form action="confirmarEliminarPropietario" id="${propietario.id}" method="POST">
+            <g:link action="editarPropietario" id="${propietario.id}">Editar</g:link>
             <g:submitButton name="delete" class="delete" value="Eliminar" onclick="return confirm('¿Estás seguro?');"/>
-            <g:link class="edit" action="cliente">Cancelar</g:link>
+            <g:link class="edit" action="propietario">Cancelar</g:link>
     </g:form>
 
 </body>  
@@ -45,19 +45,19 @@
         <%-- <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}">Página Principal</a></li>
-                <li><g:link class="list" action="index">Lista de Clientes</g:link></li>
-                <li><g:link class="create" action="create">Crear Nuevo Cliente</g:link></li>
+                <li><g:link class="list" action="index">Lista de Propietarios</g:link></li>
+                <li><g:link class="create" action="create">Crear Nuevo Propietario</g:link></li>
             </ul>
         </div>
-        <div id="show-cliente" class="content scaffold-show" role="main">
-            <h1>Cliente en la Base de Datos</h1>
+        <div id="show-propietario" class="content scaffold-show" role="main">
+            <h1>Propietario en la Base de Datos</h1>
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="cliente" />
-            <g:form resource="${this.cliente}" method="DELETE">
+            <f:display bean="propietario" />
+            <g:form resource="${this.propietario}" method="DELETE">
                 <fieldset class="buttons">
-                    <g:link class="edit" action="edit" resource="${this.cliente}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                    <g:link class="edit" action="edit" resource="${this.propietario}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
                     <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:form>
@@ -67,12 +67,12 @@
 <%-- <!DOCTYPE html>
 <html>  
 <head>
-    <title>Alta Cliente</title>
+    <title>Alta Propietario</title>
 </head>  
 <body>
     <h1><g:link action="index">Opciones</g:link> - Alta</h1>  
-            <f:display bean="cliente" except="contratos"/>
-    <g:form action="confirmarEliminarCliente" id="${cliente.id}" method="POST">
+            <f:display bean="propietario" except="contratos"/>
+    <g:form action="confirmarEliminarPropietario" id="${propietario.id}" method="POST">
         <fieldset class="form">
             
         </fieldset>

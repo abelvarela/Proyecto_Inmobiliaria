@@ -3,10 +3,18 @@ package inmobiliaria
 class AdminController {
     def adminService
 
+    def prueba(){
+        def clie = Cliente.get(params.cli)
+        println("clie.nombre = "+ clie.nombre)
+        println("params.cli = "+ params.cli)
+        redirect(action: "index")
+    }
+
     def index() {
         render(view:"admin", model: listadoCliente())
     }
 
+// ------------------ CLIENTE --------------------------
     def cliente(){
         render(view:"cliente", model: listadoCliente())
     }
@@ -51,7 +59,55 @@ class AdminController {
         [listado: adminService.listadoClientes()]
     }
 
+// ------------------ FIN CLIENTE --------------------------
 
+
+// ------------------ PROPIETARIO --------------------------
+    def propietario(){
+        render(view:"propietario", model: listadoPropietario())
+    }
+
+    def altaPropietario(){
+        [propietario: new ClientePropietario()]
+    }
+
+    def guardarAltaPropietario(){
+        adminService.altaPropietario(params)
+        redirect(action:"propietario")
+    }
+
+    def editarPropietario(){
+        [propietario: ClientePropietario.get(params.id)]
+    }
+
+    def guardarEditarPropietario(){
+        adminService.editarPropietario(params)
+        redirect(action:"propietario")
+    }
+
+    def eliminarPropietario(){
+        [propietario: ClientePropietario.get(params.id)]
+    }
+
+    def confirmarEliminarPropietario(){
+        adminService.eliminarPropietario(new Long(params.id))
+        redirect(action:"propietario")
+    }
+
+    def verPropietario(){
+        [propietario: ClientePropietario.get(params.id)]
+    }
+
+    def buscarPropietario(){
+        // def propietarios = adminService.buscarPropietario(params)
+        render(view:"propietario", model: [listado: adminService.buscarPropietario(params)])
+    }
+
+    def listadoPropietario(){
+        [listado: adminService.listadoPropietarios()]
+    }
+
+// ------------------ FIN PROPIETARIO --------------------------
 
 
 
