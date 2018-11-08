@@ -11,12 +11,12 @@ class AdminController {
     }
 
     def index() {
-        render(view:"admin", model: listadoCliente())
+        render(view:"admin", model: [listado: listadoCliente()])
     }
 
 // ------------------ CLIENTE --------------------------
     def cliente(){
-        render(view:"cliente", model: listadoCliente())
+        render(view:"cliente", model: [listado: listadoCliente()])
     }
 
     def altaCliente(){
@@ -56,7 +56,7 @@ class AdminController {
     }
 
     def listadoCliente(){
-        [listado: adminService.listadoCliente()]
+        Cliente.findAll()
     }
 
 // ------------------ FIN CLIENTE --------------------------
@@ -64,7 +64,7 @@ class AdminController {
 
 // ------------------ PROPIETARIO --------------------------
     def propietario(){
-        render(view:"propietario", model: listadoPropietario())
+        render(view:"propietario", model: [listado: listadoPropietario()])
     }
 
     def altaPropietario(){
@@ -104,7 +104,7 @@ class AdminController {
     }
 
     def listadoPropietario(){
-        [listado: adminService.listadoPropietario()]
+        ClientePropietario.findAll()
     }
 
 // ------------------ FIN PROPIETARIO --------------------------
@@ -112,7 +112,7 @@ class AdminController {
 
 // ------------------ PROPIEDAD --------------------------
     def propiedad(){
-        render(view:"propiedad", model: listadoPropiedad())
+        render(view:"propiedad", model: [listado: listadoPropiedad()])
     }
 
     def altaPropiedad(){
@@ -152,13 +152,58 @@ class AdminController {
     }
 
     def listadoPropiedad(){
-        [listado: adminService.listadoPropiedad()]
+        Propiedad.findAll()
     }
 
 // ------------------ FIN PROPIEDAD --------------------------
 
 
+// ------------------ USUARIO --------------------------
+    def usuario(){
+        render(view:"usuario", model: [listado: listadoUsuario()])
+    }
 
+    def altaUsuario(){
+        [usuario: new Usuario(), roles: Rol.findAll()]
+    }
+
+    def guardarAltaUsuario(){
+        adminService.altaUsuario(params)
+        redirect(action:"usuario")
+    }
+
+    def editarUsuario(){
+        [usuario: Usuario.get(params.id)]
+    }
+
+    def guardarEditarUsuario(){
+        adminService.editarUsuario(params)
+        redirect(action:"usuario")
+    }
+
+    def eliminarUsuario(){
+        [usuario: Usuario.get(params.id)]
+    }
+
+    def confirmarEliminarUsuario(){
+        adminService.eliminarUsuario(new Long(params.id))
+        redirect(action:"usuario")
+    }
+
+    def verUsuario(){
+        [usuario: Usuario.get(params.id)]
+    }
+
+    def buscarUsuario(){
+        // def usuarios = adminService.buscarUsuario(params)
+        render(view:"usuario", model: [listado: adminService.buscarUsuario(params)])
+    }
+
+    def listadoUsuario(){
+        Usuario.findAll()
+    }
+
+// ------------------ FIN USUARIO --------------------------
 
 
 

@@ -26,11 +26,6 @@ class AdminService {
         cliente.save(flush: true)
     }
 
-    def listadoCliente(){
-        def clientes = Cliente.findAll()
-        return clientes
-    }
-
     def eliminarCliente(Long id){
         def cliente = Cliente.get(id)
         cliente.delete(flush: true)
@@ -73,11 +68,6 @@ class AdminService {
         propietario.save(flush: true)
     }
 
-    def listadoPropietario(){
-        def propietarios = ClientePropietario.findAll()
-        return propietarios
-    }
-
     def eliminarPropietario(Long id){
         def propietario = ClientePropietario.get(id)
         propietario.delete(flush: true)
@@ -118,11 +108,6 @@ class AdminService {
         propiedad.save(flush: true)
     }
 
-    def listadoPropiedad(){
-        def propiedades = Propiedad.findAll()
-        return propiedades
-    }
-
     def eliminarPropiedad(Long id){
         def propiedad = Propiedad.get(id)
         propiedad.delete(flush: true)
@@ -142,5 +127,48 @@ class AdminService {
 
 // ------------------- FIN PROPIEDAD ----------------------
 
+
+// ------------------ USUARIO --------------------------
+
+    def altaUsuario(Map params){
+        def usuario = new Usuario(params).save(flush:true)
+        def rol = Rol.get(params.rol)
+        def usuRol = new UsuarioRol(usuario: usuario, rol: rol).save(flush:true)
+    }
+
+    def editarUsuario(Map params){
+        def usuario = Usuario.get(params.id)
+
+        usuario.nombreUsuario = params.nombreUsuario
+        usuario.nombre = params.nombre
+        usuario.apellido = params.apellido
+        usuario.contrasena = params.contrasena
+        usuario.email = params.email        
+
+        usuario.save(flush: true)
+    }
+
+    def eliminarUsuario(Long id){
+        def usuario = Usuario.get(id)
+        usuario.delete(flush: true)
+    }
+
+    def buscarUsuario(Map params){
+        if(params.email){
+            params.email = '%'+params.email+'%'
+            return Usuario.findAllByEmailLike(params.email)
+        }else if(params.nombreUsuario){
+            params.nombreUsuario = '%'+params.nombreUsuario+'%'
+            return Usuario.findAllByNombreUsuarioLike(params.nombreUsuario)
+        }else if(params.apellido){
+            params.apellido = '%'+params.apellido+'%'
+            return Usuario.findAllByApellidoLike(params.apellido)
+        }else {
+            params.nombre = '%'+params.nombre+'%'
+            return Usuario.findAllByNombreLike(params.nombre)
+        }
+    }
+
+// ------------------- FIN USUARIO ----------------------
 
 }

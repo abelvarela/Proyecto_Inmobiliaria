@@ -3,6 +3,9 @@ package inmobiliaria
 class LoginController {
 
     def index() {
+        if(session.usuario){
+            redirect(controller:"admin", action:"index")
+        }
         render(view:"login")
     }
 
@@ -10,6 +13,7 @@ class LoginController {
         if (request.get) {
             return render(view: 'login')
         }
+        
         def u = Usuario.findByEmail(params.email)
         if (u) {
             if (u.contrasena == u.generateMD5_A(params.contrasena)) {
