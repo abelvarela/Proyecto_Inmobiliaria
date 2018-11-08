@@ -11,12 +11,12 @@ class AdminController {
     }
 
     def index() {
-        render(view:"admin", model: [listado: listadoCliente()])
+        render(view:"admin", model: [listado: Cliente.findAll()])
     }
 
 // ------------------ CLIENTE --------------------------
     def cliente(){
-        render(view:"cliente", model: [listado: listadoCliente()])
+        render(view:"cliente", model: [listado: Cliente.findAll()])
     }
 
     def altaCliente(){
@@ -55,16 +55,13 @@ class AdminController {
         render(view:"cliente", model: [listado: adminService.buscarCliente(params)])
     }
 
-    def listadoCliente(){
-        Cliente.findAll()
-    }
 
 // ------------------ FIN CLIENTE --------------------------
 
 
 // ------------------ PROPIETARIO --------------------------
     def propietario(){
-        render(view:"propietario", model: [listado: listadoPropietario()])
+        render(view:"propietario", model: [listado: ClientePropietario.findAll()])
     }
 
     def altaPropietario(){
@@ -103,20 +100,17 @@ class AdminController {
         render(view:"propietario", model: [listado: adminService.buscarPropietario(params)])
     }
 
-    def listadoPropietario(){
-        ClientePropietario.findAll()
-    }
 
 // ------------------ FIN PROPIETARIO --------------------------
 
 
 // ------------------ PROPIEDAD --------------------------
     def propiedad(){
-        render(view:"propiedad", model: [listado: listadoPropiedad()])
+        render(view:"propiedad", model: [listado: Propiedad.findAll()])
     }
 
     def altaPropiedad(){
-        [propiedad: new Propiedad(), listado: adminService.listadoPropietario()]
+        [propiedad: new Propiedad(), listado: ClientePropietario.findAll()]
     }
 
     def guardarAltaPropiedad(){
@@ -151,16 +145,14 @@ class AdminController {
         render(view:"propiedad", model: [listado: adminService.buscarPropiedad(params)])
     }
 
-    def listadoPropiedad(){
-        Propiedad.findAll()
-    }
+    
 
 // ------------------ FIN PROPIEDAD --------------------------
 
 
 // ------------------ USUARIO --------------------------
     def usuario(){
-        render(view:"usuario", model: [listado: listadoUsuario()])
+        render(view:"usuario", model: [listado: Usuario.findAll()])
     }
 
     def altaUsuario(){
@@ -199,9 +191,7 @@ class AdminController {
         render(view:"usuario", model: [listado: adminService.buscarUsuario(params)])
     }
 
-    def listadoUsuario(){
-        Usuario.findAll()
-    }
+    
 
 // ------------------ FIN USUARIO --------------------------
 

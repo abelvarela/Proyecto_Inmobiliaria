@@ -20,6 +20,11 @@ spring:
         template:
             check-template-location: false
 
+######### Agrego para que no me falle #######
+
+server:
+    port: 9999
+
 # Spring Actuator Endpoints are Disabled by Default
 endpoints:
     enabled: false

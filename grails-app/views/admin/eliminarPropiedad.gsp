@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>  
-<%-- <head>
-    <title>Alta Propiedad</title>
-</head>   --%>
-
 <head>
     <meta name="layout" content="main" />
-    <g:set var="entityName" value="${message(code: 'propiedad.label', default: 'Propiedad')}" />
+    <%-- <g:set var="entityName" value="${message(code: 'propiedad.label', default: 'Propiedad')}" /> --%>
     <title>Eliminar Propiedad</title>
 </head>
 <body>

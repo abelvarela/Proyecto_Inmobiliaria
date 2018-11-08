@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>  
-<%-- <head>
-    <title>Alta Cliente</title>
-</head>   --%>
-
 <head>
     <meta name="layout" content="main" />
-    <g:set var="entityName" value="${message(code: 'cliente.label', default: 'Cliente')}" />
+    <%-- <g:set var="entityName" value="${message(code: 'cliente.label', default: 'Cliente')}" /> --%>
     <title>Eliminar Cliente</title>
 </head>
 <body>

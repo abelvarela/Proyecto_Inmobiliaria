@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>  
-<%-- <head>
-    <title>Alta Propietario</title>
-</head>   --%>
-
 <head>
     <meta name="layout" content="main" />
-    <g:set var="entityName" value="${message(code: 'propietario.label', default: 'Propietario')}" />
+    <%-- <g:set var="entityName" value="${message(code: 'propietario.label', default: 'Propietario')}" /> --%>
     <title>Ver Propietario</title>
 </head>
 <body>

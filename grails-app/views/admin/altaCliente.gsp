@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>  
 <head>
+    <meta name="layout" content="main" />
     <title>Crear Cliente</title>
 </head>  
 <body>

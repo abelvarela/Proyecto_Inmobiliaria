@@ -15,7 +15,9 @@
 </head>
 <body>
 
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
+    
+
+    <nav class="navbar navbar-default navbar-inverse" role="navigation" style="background-color: black">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,21 +26,49 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/#">
-		    <asset:image src="grails.svg" alt="Grails Logo"/>
+                <a class="navbar-brand" href="/">
+
+		            <asset:image src="icono4.png" alt="logo_inmobiliaria"/>
                 </a>
             </div>
-            <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
-                <ul class="nav navbar-nav navbar-right">
-                    <g:pageProperty name="page.nav" />
-                </ul>
-            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                     <ul class="nav navbar-nav">
+                        <li class="active" ><a href="/">Inicio</a></li>  
+                        <li><g:link controller="admin" action="cliente">Cliente</g:link></li>
+                        <li><g:link controller="admin" action="propietario">Propietario</g:link></li>
+                        <li ><g:link controller="admin" action="propiedad">Propiedad</g:link></li>
+                        <li><g:link controller="admin" action="usuario">Usuario</g:link></li>
+                        <li><label>${session?.usuario?.nombreUsuario}</label></li>
+                        <li><g:link controller="login" action="logout">Cerrar Sesion</g:link></li>
+                    </ul>
+
+                <%-- <g:if test="${session!=null && session.usuario!=null}">    
+                    <ul class="nav navbar-nav navbar-right" >
+                        <li><g:link controller="Login" action="login"><b>${session?.usuario?.nombreUsuario}</b></g:link></li>
+                        <li><g:link controller="Login" action="logout">Salir</g:link></li>
+                    </ul>
+                </g:if>    
+                    
+                <g:else>    
+                    <ul class="nav navbar-nav navbar-right" >
+                        <li class="dropdown btn-group">
+                        <g:link controller="Login" action="login">
+                        <b>Iniciar Sesión</b></g:link></li>
+                    </ul>
+                </g:else> --%>
+
+
+            </div>        
+
         </div>
-    </div>
+    </nav>
+   
 
     <g:layoutBody/>
 
-    <div class="footer" role="contentinfo"></div>
+    <div class="footer" role="contentinfo">
+      Universidad Nacional de Catamarca - FTyCA - Cátedra Programacion III - 2018
+    </div>
 
     <div id="spinner" class="spinner" style="display:none;">
         <g:message code="spinner.alt" default="Loading&hellip;"/>

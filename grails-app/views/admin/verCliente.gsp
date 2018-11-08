@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html>  
-<%-- <head>
-    <title>Alta Cliente</title>
-</head>   --%>
-
+<html>
 <head>
     <meta name="layout" content="main" />
-    <g:set var="entityName" value="${message(code: 'cliente.label', default: 'Cliente')}" />
+    <%-- <g:set var="entityName" value="${message(code: 'cliente.label', default: 'Cliente')}" /> --%>
     <title>Ver Cliente</title>
 </head>
 <body>
@@ -21,10 +17,10 @@
         
         <%-- aqui se muestra todo, medio pelo --%>
         <f:display bean="cliente"  />
-        <label>Contratos: </label>
+        <%-- <label>Contratos: </label>
         <g:each in="${cliente.contratos?}">
             ${it.monto}
-        </g:each>        
+        </g:each>         --%>
         <br>
         
         <%-- <g:link action="eliminarCliente" id="${cliente.id}">Eliminar</g:link> --%>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>  
 <head>
+    <meta name="layout" content="main" />
     <title>Editar Cliente</title>
 </head>  
 <body>
