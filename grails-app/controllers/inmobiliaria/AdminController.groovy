@@ -56,7 +56,7 @@ class AdminController {
     }
 
     def listadoCliente(){
-        [listado: adminService.listadoClientes()]
+        [listado: adminService.listadoCliente()]
     }
 
 // ------------------ FIN CLIENTE --------------------------
@@ -104,10 +104,58 @@ class AdminController {
     }
 
     def listadoPropietario(){
-        [listado: adminService.listadoPropietarios()]
+        [listado: adminService.listadoPropietario()]
     }
 
 // ------------------ FIN PROPIETARIO --------------------------
+
+
+// ------------------ PROPIEDAD --------------------------
+    def propiedad(){
+        render(view:"propiedad", model: listadoPropiedad())
+    }
+
+    def altaPropiedad(){
+        [propiedad: new Propiedad(), listado: adminService.listadoPropietario()]
+    }
+
+    def guardarAltaPropiedad(){
+        adminService.altaPropiedad(params)
+        redirect(action:"propiedad")
+    }
+
+    def editarPropiedad(){
+        [propiedad: Propiedad.get(params.id)]
+    }
+
+    def guardarEditarPropiedad(){
+        adminService.editarPropiedad(params)
+        redirect(action:"propiedad")
+    }
+
+    def eliminarPropiedad(){
+        [propiedad: Propiedad.get(params.id)]
+    }
+
+    def confirmarEliminarPropiedad(){
+        adminService.eliminarPropiedad(new Long(params.id))
+        redirect(action:"propiedad")
+    }
+
+    def verPropiedad(){
+        [propiedad: Propiedad.get(params.id)]
+    }
+
+    def buscarPropiedad(){
+        // def propiedades = adminService.buscarPropiedad(params)
+        render(view:"propiedad", model: [listado: adminService.buscarPropiedad(params)])
+    }
+
+    def listadoPropiedad(){
+        [listado: adminService.listadoPropiedad()]
+    }
+
+// ------------------ FIN PROPIEDAD --------------------------
 
 
 

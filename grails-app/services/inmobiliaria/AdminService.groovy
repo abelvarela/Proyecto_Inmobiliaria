@@ -26,7 +26,7 @@ class AdminService {
         cliente.save(flush: true)
     }
 
-    def listadoClientes(){
+    def listadoCliente(){
         def clientes = Cliente.findAll()
         return clientes
     }
@@ -73,7 +73,7 @@ class AdminService {
         propietario.save(flush: true)
     }
 
-    def listadoPropietarios(){
+    def listadoPropietario(){
         def propietarios = ClientePropietario.findAll()
         return propietarios
     }
@@ -97,6 +97,50 @@ class AdminService {
     }
 
 // ------------------- FIN PROPIETARIO ----------------------
+
+
+// ------------------ PROPIEDAD --------------------------
+
+    def altaPropiedad(Map params){
+        params.propietario = ClientePropietario.get(params.propietario)
+        def propiedad = new Propiedad(params).save(flush:true)
+    }
+
+    def editarPropiedad(Map params){
+        def propiedad = Propiedad.get(params.id)
+
+        propiedad.tipo = params.tipo
+        propiedad.ubicacion = params.ubicacion
+        propiedad.direccion = params.direccion
+        propiedad.descripcion = params.descripcion
+        propiedad.precio = params.precio
+
+        propiedad.save(flush: true)
+    }
+
+    def listadoPropiedad(){
+        def propiedades = Propiedad.findAll()
+        return propiedades
+    }
+
+    def eliminarPropiedad(Long id){
+        def propiedad = Propiedad.get(id)
+        propiedad.delete(flush: true)
+    }
+
+    def buscarPropiedad(Map params){
+        if(params.tipo!="" && params.ubicacion!=""){
+            return Propiedad.findAllByTipoAndUbicacion(params.tipo,params.ubicacion)
+        }else if(params.tipo!="" && params.ubicacion==""){
+            return Propiedad.findAllByTipo(params.tipo)
+        }else if(params.tipo=="" && params.ubicacion!="") {
+            return Propiedad.findAllByUbicacion(params.ubicacion)
+        }else{
+            return Propiedad.findAll()
+        }
+    }
+
+// ------------------- FIN PROPIEDAD ----------------------
 
 
 }

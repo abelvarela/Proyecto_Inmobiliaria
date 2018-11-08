@@ -7,9 +7,11 @@ class Propiedad {
     String direccion
     String descripcion
     BigDecimal precio
+    Boolean estado
+    Boolean oferta
     
 
-    static belongsTo = [cliente: Cliente]
+    static belongsTo = [propietario: ClientePropietario]
 
     static constraints = {
         
