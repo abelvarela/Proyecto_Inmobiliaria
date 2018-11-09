@@ -23,8 +23,10 @@ class Contrato {
         propiedad(blank: false)
         propietario(blank: false)
         cliente(blank: false)
-      
-
-
     }
+
+    String toString(){
+        fechaOperacion
+    }
+
 }

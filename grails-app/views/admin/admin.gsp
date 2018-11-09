@@ -44,16 +44,16 @@
     </table> --%>
 
 
-    <g:form action="prueba" method="POST">
+    <%-- <g:form action="prueba" method="POST">
         <label>Clientes: </label>
         <select name ="cli">
-            <g:each in="${listado?}">   
+            <g:each in="{clien}">   
                 <option value="${it.id}"> ${it.nombre} </option>
             </g:each>
         </select><br>
         <g:submitButton name="search" class="search" value="Enviar"/>
         <g:link action="index">Mostrar todos</g:link>
-    </g:form>
+    </g:form> --%>
 
 
 

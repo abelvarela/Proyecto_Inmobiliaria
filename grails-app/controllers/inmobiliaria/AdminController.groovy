@@ -106,7 +106,7 @@ class AdminController {
 
 // ------------------ PROPIEDAD --------------------------
     def propiedad(){
-        render(view:"propiedad", model: [listado: Propiedad.findAll()])
+        render(view:"propiedad", model: [listado: Propiedad.findAll([sort: "ubicacion", order: "asc"])])
     }
 
     def altaPropiedad(){
@@ -141,7 +141,6 @@ class AdminController {
     }
 
     def buscarPropiedad(){
-        // def propiedades = adminService.buscarPropiedad(params)
         render(view:"propiedad", model: [listado: adminService.buscarPropiedad(params)])
     }
 
@@ -152,7 +151,9 @@ class AdminController {
 
 // ------------------ CONTRATO --------------------------
     def contrato(){
-        render(view:"contrato", model: [listado: Contrato.findAll()])
+        render(view:"contrato", model: [listado: Contrato.findAll([sort: "cliente.apellido", order: "asc"]), 
+        clientes: Cliente.findAll([sort: "apellido", order: "asc"]), propiedades: Propiedad.findAll([sort: "ubicacion", order: "asc"]),
+        propietarios: ClientePropietario.findAll([sort: "apellido", order: "asc"]) ])
     }
 
     def altaContrato(){
@@ -187,12 +188,22 @@ class AdminController {
     }
 
     def buscarContrato(){
-        render(view:"contrato", model: [listado: adminService.buscarContrato(params)])
+        render(view:"contrato", model: [listado: adminService.buscarContrato(params),
+        clientes: Cliente.findAll([sort: "apellido", order: "asc"]), propiedades: Propiedad.findAll([sort: "ubicacion", order: "asc"]),
+        propietarios: ClientePropietario.findAll([sort: "apellido", order: "asc"]) ])
     }
 
     
 
 // ------------------ FIN CONTRATO --------------------------
+
+
+// ------------------ CONSULTA --------------------------
+    
+
+    
+
+// ------------------ FIN CONSULTA --------------------------
 
 
 

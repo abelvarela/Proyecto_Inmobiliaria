@@ -17,13 +17,17 @@ class BootStrap {
         email: "joaqin@gmail.com"
     ).save()
 
-    def propiedad = new Propiedad(
-        tipo: "Casa" ,
-        ubicacion: "Valle Viejo" ,
-        direccion: "calle sn" ,
-        descripcion: "descripcion aqui " ,
-        precio: 2345 ,
+    def cliente2 = new Cliente(
+        nombre: "Daniel" ,
+        apellido: "Varela" ,
+        sexo: 'M' ,
+        dni: "37632999" ,
+        fechaNacimiento: new Date() ,
+        domicilio: "San antonio" ,
+        telefono: "383-4021123" ,
+        email: "daniel@gmail.com"
     ).save()
+
 
     def propietario = new ClientePropietario(
         nombre: "Ernesto" ,
@@ -36,6 +40,40 @@ class BootStrap {
         email: "ernesto@gmail.com"
     ).save()
 
+    def propietario2 = new ClientePropietario(
+        nombre: "Miguel" ,
+        apellido: "Fadel" ,
+        sexo: 'M' ,
+        dni: "37632888" ,
+        fechaNacimiento: new Date() ,
+        domicilio: "San antonio" ,
+        telefono: "383-4021123" ,
+        email: "mf@gmail.com"
+    ).save()
+
+    def propiedad = new Propiedad(
+        tipo: "Casa" ,
+        ubicacion: "Valle Viejo" ,
+        operacion: "Alquiler" ,
+        direccion: "calle sn" ,
+        descripcion: "descripcion aqui " ,
+        precio: 2345 ,
+        estado: true ,
+        oferta: false ,
+        propietario: propietario
+    ).save()
+
+    def propiedad2 = new Propiedad(
+        tipo: "Oficina" ,
+        ubicacion: "Capital" ,
+        operacion: "Venta" ,
+        direccion: "calle sn" ,
+        descripcion: "descripcion aqui " ,
+        precio: 25 ,
+        estado: false ,
+        oferta: true ,
+        propietario: propietario2
+    ).save()
 
     def contrato = new Contrato(
         fechaOperacion: new Date() ,
@@ -43,8 +81,18 @@ class BootStrap {
         comision: 1000 ,
         fechaCaducidad: new Date() ,
         propiedad: propiedad ,
-        propietario:  propietario ,
+        propietario:  propiedad.propietario ,
         cliente:  cliente 
+    ).save()
+
+    def contrato2 = new Contrato(
+        fechaOperacion: new Date() ,
+        monto:  2500 ,
+        comision: 1000 ,
+        fechaCaducidad: new Date() ,
+        propiedad: propiedad2 ,
+        propietario:  propiedad2.propietario ,
+        cliente:  cliente2 
     ).save()
 
 

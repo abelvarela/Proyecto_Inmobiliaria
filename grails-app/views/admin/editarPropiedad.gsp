@@ -9,6 +9,12 @@
     <g:form action="guardarEditarPropiedad" id="${propiedad.id}" method="POST">
         <fieldset class="form">
             <f:all bean="propiedad" except="contratos" /> 
+            <%-- <div class="fieldcontain required">
+                <label for="precio">
+                    Precio<span class="required-indicator">*</span>
+                </label>
+                <input id="precio" type="number decimal" name="precio" value="" required>
+            </div> --%>
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="Guardar cambios" />

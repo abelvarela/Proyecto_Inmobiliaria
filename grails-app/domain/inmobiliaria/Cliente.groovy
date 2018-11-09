@@ -27,4 +27,9 @@ class Cliente {
         telefono(blank: false, matches: "[0-9]{3}-[0-9]{7}")
         email(blank: true, email:true)
     }
+
+
+    String toString(){
+        nombre + " " + apellido
+    }
 }

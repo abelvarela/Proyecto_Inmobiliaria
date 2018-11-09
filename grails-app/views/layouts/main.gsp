@@ -36,6 +36,7 @@
                         <li><g:link controller="admin" action="cliente">Cliente</g:link></li>
                         <li><g:link controller="admin" action="propietario">Propietario</g:link></li>
                         <li ><g:link controller="admin" action="propiedad">Propiedad</g:link></li>
+                        <li ><g:link controller="admin" action="contrato">Contrato</g:link></li>
                         <li><g:link controller="admin" action="usuario">Usuario</g:link></li>
                     </ul>
 

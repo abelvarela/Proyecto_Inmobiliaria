@@ -99,6 +99,17 @@ class AdminService {
 
     def editarPropiedad(Map params){
         def propiedad = Propiedad.get(params.id)
+        
+        if(params.estado=="on")
+            propiedad.estado = true
+        else
+            propiedad.estado = false
+        
+        if(params.oferta=="on")
+            propiedad.oferta = true
+        else
+            propiedad.oferta = false
+        
 
         propiedad.tipo = params.tipo
         propiedad.ubicacion = params.ubicacion
@@ -106,8 +117,6 @@ class AdminService {
         propiedad.direccion = params.direccion
         propiedad.descripcion = params.descripcion
         propiedad.precio = new BigDecimal(params.precio)
-        propiedad.estado = params.estado
-        propiedad.oferta = params.oferta
         propiedad.propietario = ClientePropietario.get(params.propietario.id)
 
         propiedad.save(flush: true)
@@ -119,15 +128,22 @@ class AdminService {
     }
 
     def buscarPropiedad(Map params){
-        if(params.tipo!="" && params.ubicacion!=""){
-            return Propiedad.findAllByTipoAndUbicacion(params.tipo,params.ubicacion)
-        }else if(params.tipo!="" && params.ubicacion==""){
-            return Propiedad.findAllByTipo(params.tipo)
-        }else if(params.tipo=="" && params.ubicacion!="") {
-            return Propiedad.findAllByUbicacion(params.ubicacion)
-        }else{
-            return Propiedad.findAll()
-        }
+        // if(params.tipo!="" && params.ubicacion!=""){
+        //     return Propiedad.findAllByTipoAndUbicacion(params.tipo,params.ubicacion,[sort: "ubicacion", order: "asc"])
+        // }else if(params.tipo!="" && params.ubicacion==""){
+        //     return Propiedad.findAllByTipo(params.tipo,[sort: "ubicacion", order: "asc"])
+        // }else if(params.tipo=="" && params.ubicacion!="") {
+        //     return Propiedad.findAllByUbicacion(params.ubicacion,[sort: "tipo", order: "asc"])
+        // }else{
+        //     return Propiedad.findAll([sort: "ubicacion", order: "asc"])
+        // }
+
+        return Propiedad.findAll("from Propiedad as p where p.tipo like :tipo and p.ubicacion like :ubicacion and p.operacion like :operacion",
+        [tipo: params.tipo, ubicacion: params.ubicacion, operacion: params.operacion])
+
+
+
+
     }
 
 // ------------------- FIN PROPIEDAD ----------------------
@@ -151,7 +167,7 @@ class AdminService {
         def contrato = Contrato.get(params.id)
 
         contrato.propiedad = Propiedad.get(params.propiedad.id)
-        contrato.propietario = params.propiedad.propietario
+        contrato.propietario = contrato.propiedad.propietario
         contrato.cliente = Cliente.get(params.cliente.id)
         
         contrato.fechaOperacion = params.fechaOperacion
@@ -178,6 +194,48 @@ class AdminService {
         // }else{
         //     return Contrato.findAll()
         // }
+
+
+        // return Contrato.findAll("from Contrato as c where c.cliente.id = :cliente and c.propietario.id = :propietario and c.propiedad.tipo = :tipo and c.propiedad.ubicacion = :ubicacion",
+        // [cliente: new Long (params.cliente), propietario: new Long (params.propietario),
+        // tipo: params.tipo, ubicacion: params.ubicacion])
+
+        // if(params.tipo!="" && params.ubicacion!=""){
+        //     return Contrato.findAllByTipoAndUbicacion(params.tipo,params.ubicacion)
+        // }else if(params.tipo!="" && params.ubicacion==""){
+        //     return Contrato.findAllByTipo(params.tipo)
+        // }else if(params.tipo=="" && params.ubicacion!="") {
+        //     return Contrato.findAllByUbicacion(params.ubicacion)
+        // }else{
+        //     return Contrato.findAll()
+        // }
+        
+        // return Contrato.findAll("from Contrato as c where c.cliente.id like :cliente and ")
+        
+
+
+        if(params.cliente!="%%" && params.propietario!="%%"){
+            params.cliente = new Long(params.cliente)
+            params.propietario = new Long(params.propietario)
+            return Contrato.findAll("from Contrato as c where c.cliente.id = :cliente and c.propietario.id = :propietario and c.propiedad.tipo like :tipo and c.propiedad.ubicacion like :ubicacion",
+            [cliente: params.cliente, propietario: params.propietario,
+            tipo: params.tipo, ubicacion: params.ubicacion])
+        }else if(params.cliente!="%%" && params.propietario=="%%"){
+            params.cliente = new Long(params.cliente)
+            return Contrato.findAll("from Contrato as c where c.cliente.id = :cliente and c.propiedad.tipo like :tipo and c.propiedad.ubicacion like :ubicacion",
+            [cliente: params.cliente, tipo: params.tipo, ubicacion: params.ubicacion])
+        }else if(params.cliente=="%%" && params.propietario!="%%"){
+            params.propietario = new Long(params.propietario)
+            return Contrato.findAll("from Contrato as c where c.propietario.id = :propietario and c.propiedad.tipo like :tipo and c.propiedad.ubicacion like :ubicacion",
+            [propietario: params.propietario, tipo: params.tipo, ubicacion: params.ubicacion])
+        }else{
+            return Contrato.findAll("from Contrato as c where c.propiedad.tipo like :tipo and c.propiedad.ubicacion like :ubicacion",
+            [tipo: params.tipo, ubicacion: params.ubicacion])
+        }
+
+
+
+
     }
 
 // ------------------- FIN CONTRATO ----------------------

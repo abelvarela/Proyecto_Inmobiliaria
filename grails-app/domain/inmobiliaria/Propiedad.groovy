@@ -22,6 +22,10 @@ class Propiedad {
         direccion(blank: false, maxSize: 100)
         descripcion(blank: false, maxSize: 100)
         precio(blank: false)
-      
     }
+
+    String toString(){
+        direccion
+    }
+
 }

@@ -12,7 +12,7 @@
             <fieldset class="buttons">
                 <label for="tipo">Tipo: </label>
                 <select name ="tipo" id="tipo">
-                    <option value=""> Todos </option>
+                    <option value="%%"> Todos </option>
                     <option value="Casa"> Casa </option>
                     <option value="Departamento"> Departamento </option>
                     <option value="Local"> Local </option>
@@ -21,11 +21,18 @@
                 
                 <label for="ubicacion">Ubicacion: </label>
                 <select name ="ubicacion" id="ubicacion">
-                    <option value=""> Todas </option>
+                    <option value="%%"> Todas </option>
                     <option value="F.M.E."> F.M.E. </option>
                     <option value="Valle Viejo"> Valle Viejo </option>
                     <option value="Capital"> Capital </option>
                     <option value="Ambato"> Ambato </option>
+                </select>
+
+                <label for="operacion">Operacion: </label>
+                <select name ="operacion" id="operacion">
+                    <option value="%%"> Todas </option>
+                    <option value="Venta"> Venta </option>
+                    <option value="Alquiler"> Alquiler </option>
                 </select>
                  <%-- agregar buscar por operacion --%>
                 <g:submitButton name="search" class="search" value="Buscar"/>
@@ -43,6 +50,7 @@
                 <th>Tipo</th>
                 <th>Ubicacion</th>
                 <th>Operacion</th>
+                <th>Direccion</th>
                 <th>Precio</th>
                 <th>Propietario</th>
                 <th>¿Disponible?</th>
@@ -62,6 +70,7 @@
                     <td>${it.tipo}</td>
                     <td>${it.ubicacion}</td>
                     <td>${it.operacion}</td>
+                    <td>${it.direccion}</td>
                     <td>${it.precio}</td>
                     <td><g:link action="verPropietario" id="${it.propietario.id}">${it.propietario.nombre} ${it.propietario.apellido}</g:link></td>
                     <td>${estado}</td>

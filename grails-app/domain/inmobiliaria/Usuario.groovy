@@ -62,4 +62,5 @@ class Usuario implements Serializable {
         email=email?.toLowerCase()
     }
 
+
 }
