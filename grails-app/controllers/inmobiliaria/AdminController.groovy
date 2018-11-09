@@ -15,6 +15,7 @@ class AdminController {
     }
 
 // ------------------ CLIENTE --------------------------
+
     def cliente(){
         render(view:"cliente", model: [listado: Cliente.findAll()])
     }
@@ -105,8 +106,17 @@ class AdminController {
 
 
 // ------------------ PROPIEDAD --------------------------
+
     def propiedad(){
         render(view:"propiedad", model: [listado: Propiedad.findAll([sort: "ubicacion", order: "asc"])])
+    }
+
+
+    // PARA LISTAR LAS OFERTAS. COLOCAR EN UN CONTROLADOR QUE CORRESPONDA
+    
+    def listadoOferta(){
+        render(view:"propiedad", model: [listado: Propiedad.findAll(("from propiedad as p where p.oferta like 'true' ")])
+
     }
 
     def altaPropiedad(){
@@ -144,14 +154,14 @@ class AdminController {
         render(view:"propiedad", model: [listado: adminService.buscarPropiedad(params)])
     }
 
-    
+
 
 // ------------------ FIN PROPIEDAD --------------------------
 
 
 // ------------------ CONTRATO --------------------------
     def contrato(){
-        render(view:"contrato", model: [listado: Contrato.findAll([sort: "cliente.apellido", order: "asc"]), 
+        render(view:"contrato", model: [listado: Contrato.findAll([sort: "cliente.apellido", order: "asc"]),
         clientes: Cliente.findAll([sort: "apellido", order: "asc"]), propiedades: Propiedad.findAll([sort: "ubicacion", order: "asc"]),
         propietarios: ClientePropietario.findAll([sort: "apellido", order: "asc"]) ])
     }
@@ -193,15 +203,15 @@ class AdminController {
         propietarios: ClientePropietario.findAll([sort: "apellido", order: "asc"]) ])
     }
 
-    
+
 
 // ------------------ FIN CONTRATO --------------------------
 
 
 // ------------------ CONSULTA --------------------------
-    
 
-    
+
+
 
 // ------------------ FIN CONSULTA --------------------------
 
@@ -249,7 +259,7 @@ class AdminController {
         render(view:"usuario", model: [listado: adminService.buscarUsuario(params)])
     }
 
-    
+
 
 // ------------------ FIN USUARIO --------------------------
 
