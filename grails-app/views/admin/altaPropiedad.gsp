@@ -5,20 +5,19 @@
     <title>Crear Propiedad</title>
 </head>  
 <body>
-    <h1><g:link action="propiedad">Crear Propiedad</g:link></h1>  
+    
+    <%-- dar estilo al titulo --%>
+    <h1>Crear Propiedad</h1>  
+    
+    
+    
     <g:form action="guardarAltaPropiedad" method="POST">
         <fieldset class="form">
-            <f:all bean="propiedad" except="propietario"/>
-            <label for="propietario">Propietario: </label>
-            <select name ="propietario" id="propietario">
-                <g:each in="${listado?}">   
-                <option value="${it.id}"> ${it.nombre} </option>
-                </g:each>
-            </select>
+            <f:all bean="propiedad"/>
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="Guardar Propiedad"/>
-            <g:link action="propiedad">Cancelar</g:link>
+            <g:link action="propiedad" onclick="return confirm('¿Estás seguro?');">Cancelar</g:link>
         </fieldset>
     </g:form>
 

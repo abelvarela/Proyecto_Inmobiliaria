@@ -12,7 +12,7 @@
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="Guardar cambios" />
-            <g:link action="propiedad">Cancelar</g:link>
+            <g:link action="verPropiedad" id="${propiedad.id}" onclick="return confirm('¿Estás seguro?');">Cancelar</g:link>
         </fieldset>
     </g:form>
 

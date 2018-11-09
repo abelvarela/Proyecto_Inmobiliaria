@@ -2,37 +2,43 @@
 <html>
 <head>
     <meta name="layout" content="main" />
-    <%-- <g:set var="entityName" value="${message(code: 'cliente.label', default: 'Cliente')}" /> --%>
     <title>Ver Cliente</title>
 </head>
 <body>
     <h1><g:link action="cliente">Ver Cliente</g:link></h1>  
 
 
-    <%-- <div id="show-cliente" class="content scaffold-show" role="main"> --%>
-        <%-- <g:if test="${flash.message}">
+    <%-- <div id="show-cliente" class="content scaffold-show" role="main">
+        <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
-        </g:if> --%>
+        </g:if> 
+    </div> --%>
 
         
-        <%-- aqui se muestra todo, medio pelo --%>
-        <f:display bean="cliente"  />
-        <%-- <label>Contratos: </label>
-        <g:each in="${cliente.contratos?}">
-            ${it.monto}
-        </g:each>         --%>
-        <br>
+        <%-- aqui se muestra todo--%>
+        <f:display bean="cliente" except="contratos , fechaNacimiento"/>
         
-        <%-- <g:link action="eliminarCliente" id="${cliente.id}">Eliminar</g:link> --%>
-    <%-- </div> --%>
-
+        
+        <%-- falta para ver contratos --%>
+        <ol class="property-list cliente">
+            <li class="fieldcontain">
+                <span id="tipo-label" class="property-label">Fecha Nacimiento</span>
+                <div class="property-value" aria-labelledby="tipo-label" >
+                    ${cliente.fechaNacimiento.year + 1900}-${cliente.fechaNacimiento.month}-${cliente.fechaNacimiento.date}  
+                </div>
+            </li>
+        </ol>
+        
 
 
     <%-- editar o eliminar --%>
     <g:form action="confirmarEliminarCliente" id="${cliente.id}" method="POST">
-            <g:link action="editarCliente" id="${cliente.id}">Editar</g:link>
-            <g:submitButton name="delete" class="delete" value="Eliminar" onclick="return confirm('¿Estás seguro?');"/>
-            <g:link class="edit" action="cliente">Cancelar</g:link>
+            <%-- se agrega el fieldset y nombres de class --%>
+            <fieldset class="buttons">
+                <g:submitButton name="delete" class="delete" value="Eliminar" onclick="return confirm('¿Estás seguro?');"/>
+                <g:link class="edit" action="editarCliente" id="${cliente.id}">Editar</g:link>
+                <g:link class="list" action="cliente">Volver</g:link>
+            </fieldset>
     </g:form>
 
 </body>  
