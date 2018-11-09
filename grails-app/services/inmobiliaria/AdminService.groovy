@@ -92,7 +92,8 @@ class AdminService {
 // ------------------ PROPIEDAD --------------------------
 
     def altaPropiedad(Map params){
-        params.propietario = ClientePropietario.get(params.propietario)
+        params.propietario = ClientePropietario.get(params.propietario.id)
+        // params.precio = new BigDecimal(params.precio)
         def propiedad = new Propiedad(params).save(flush:true)
     }
 
@@ -101,9 +102,13 @@ class AdminService {
 
         propiedad.tipo = params.tipo
         propiedad.ubicacion = params.ubicacion
+        propiedad.operacion = params.operacion
         propiedad.direccion = params.direccion
         propiedad.descripcion = params.descripcion
-        propiedad.precio = params.precio
+        propiedad.precio = new BigDecimal(params.precio)
+        propiedad.estado = params.estado
+        propiedad.oferta = params.oferta
+        propiedad.propietario = ClientePropietario.get(params.propietario.id)
 
         propiedad.save(flush: true)
     }
@@ -126,6 +131,60 @@ class AdminService {
     }
 
 // ------------------- FIN PROPIEDAD ----------------------
+
+
+
+
+// ------------------ CONTRATO --------------------------
+
+    def altaContrato(Map params){
+        // params.propietario = ClientePropietario.get(params.propietario.id)
+        params.propiedad = Propiedad.get(params.propiedad.id)
+        params.propietario = params.propiedad.propietario
+        params.cliente = Cliente.get(params.cliente.id)
+        // params.monto = new BigDecimal(params.monto)
+        // params.comision = new BigDecimal(params.comision)
+        def contrato = new Contrato(params).save(flush:true)
+    }
+
+    def editarContrato(Map params){
+        def contrato = Contrato.get(params.id)
+
+        contrato.propiedad = Propiedad.get(params.propiedad.id)
+        contrato.propietario = params.propiedad.propietario
+        contrato.cliente = Cliente.get(params.cliente.id)
+        
+        contrato.fechaOperacion = params.fechaOperacion
+        contrato.fechaCaducidad = params.fechaCaducidad
+        contrato.monto = new BigDecimal(params.monto)
+        contrato.comision = new BigDecimal(params.comision)
+        
+
+        contrato.save(flush: true)
+    }
+
+    def eliminarContrato(Long id){
+        def contrato = Contrato.get(id)
+        contrato.delete(flush: true)
+    }
+
+    def buscarContrato(Map params){
+        // if(params.tipo!="" && params.ubicacion!=""){
+        //     return Contrato.findAllByTipoAndUbicacion(params.tipo,params.ubicacion)
+        // }else if(params.tipo!="" && params.ubicacion==""){
+        //     return Contrato.findAllByTipo(params.tipo)
+        // }else if(params.tipo=="" && params.ubicacion!="") {
+        //     return Contrato.findAllByUbicacion(params.ubicacion)
+        // }else{
+        //     return Contrato.findAll()
+        // }
+    }
+
+// ------------------- FIN CONTRATO ----------------------
+
+
+
+
 
 
 // ------------------ USUARIO --------------------------

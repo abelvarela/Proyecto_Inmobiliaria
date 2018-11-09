@@ -110,7 +110,7 @@ class AdminController {
     }
 
     def altaPropiedad(){
-        [propiedad: new Propiedad(), listado: ClientePropietario.findAll()]
+        [propiedad: new Propiedad()]
     }
 
     def guardarAltaPropiedad(){
@@ -148,6 +148,53 @@ class AdminController {
     
 
 // ------------------ FIN PROPIEDAD --------------------------
+
+
+// ------------------ CONTRATO --------------------------
+    def contrato(){
+        render(view:"contrato", model: [listado: Contrato.findAll()])
+    }
+
+    def altaContrato(){
+        [contrato: new Contrato()]
+    }
+
+    def guardarAltaContrato(){
+        adminService.altaContrato(params)
+        redirect(action:"contrato")
+    }
+
+    def editarContrato(){
+        [contrato: Contrato.get(params.id)]
+    }
+
+    def guardarEditarContrato(){
+        adminService.editarContrato(params)
+        redirect(action:"contrato")
+    }
+
+    def eliminarContrato(){
+        [contrato: Contrato.get(params.id)]
+    }
+
+    def confirmarEliminarContrato(){
+        adminService.eliminarContrato(new Long(params.id))
+        redirect(action:"contrato")
+    }
+
+    def verContrato(){
+        [contrato: Contrato.get(params.id)]
+    }
+
+    def buscarContrato(){
+        render(view:"contrato", model: [listado: adminService.buscarContrato(params)])
+    }
+
+    
+
+// ------------------ FIN CONTRATO --------------------------
+
+
 
 
 // ------------------ USUARIO --------------------------
