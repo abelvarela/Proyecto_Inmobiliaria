@@ -154,17 +154,23 @@ class AdminService {
 // ------------------ CONTRATO --------------------------
 
     def altaContrato(Map params){
-        // params.propietario = ClientePropietario.get(params.propietario.id)
         params.propiedad = Propiedad.get(params.propiedad.id)
         params.propietario = params.propiedad.propietario
         params.cliente = Cliente.get(params.cliente.id)
-        // params.monto = new BigDecimal(params.monto)
-        // params.comision = new BigDecimal(params.comision)
         def contrato = new Contrato(params).save(flush:true)
+
+        def propiedad = params.propiedad
+        propiedad.estado = false
+        propiedad.save(flush:true)
     }
 
     def editarContrato(Map params){
         def contrato = Contrato.get(params.id)
+
+        // aqui queda disponible la anterior propiedad
+        contrato.propiedad.estado = true
+        contrato.propiedad.save(flush:true)
+
 
         contrato.propiedad = Propiedad.get(params.propiedad.id)
         contrato.propietario = contrato.propiedad.propietario
@@ -181,6 +187,10 @@ class AdminService {
 
     def eliminarContrato(Long id){
         def contrato = Contrato.get(id)
+
+        contrato.propiedad.estado = true
+        contrato.propiedad.save(flush:true)
+
         contrato.delete(flush: true)
     }
 

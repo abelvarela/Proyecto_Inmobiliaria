@@ -111,14 +111,6 @@ class AdminController {
         render(view:"propiedad", model: [listado: Propiedad.findAll([sort: "ubicacion", order: "asc"])])
     }
 
-
-    // PARA LISTAR LAS OFERTAS. COLOCAR EN UN CONTROLADOR QUE CORRESPONDA
-    
-    def listadoOferta(){
-        render(view:"propiedad", model: [listado: Propiedad.findAll(("from propiedad as p where p.oferta like 'true' ")])
-
-    }
-
     def altaPropiedad(){
         [propiedad: new Propiedad()]
     }
@@ -209,6 +201,22 @@ class AdminController {
 
 
 // ------------------ CONSULTA --------------------------
+
+    def consulta(){
+        render(view:"consulta", model: [listado: Consulta.findAll([sort: "fecha", order: "desc"]),
+        propiedades: Propiedad.findAll([sort: "ubicacion", order: "asc"])])
+    }
+
+    def verConsulta(Long id){
+        [consulta: Consulta.get(id)]
+    }
+
+    def atenderConsulta(Long id){
+        def consulta = Consulta.get(id)
+        consulta.estado = 'Atendido'
+        consulta.save(flush:true)
+        redirect(action: 'consulta')
+    }
 
 
 
