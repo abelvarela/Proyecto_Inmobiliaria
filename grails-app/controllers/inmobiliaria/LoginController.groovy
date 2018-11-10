@@ -29,6 +29,6 @@ class LoginController {
 
     def logout() {
         session.usuario=null
-        render(view: "/index")
+        redirect(controller: "principal", action: "index")
     }
 }

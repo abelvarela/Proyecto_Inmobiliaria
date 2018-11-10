@@ -32,13 +32,8 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                      <ul class="nav navbar-nav">
-                        <li class="active" ><g:link controller="admin" action="index">Inicio</g:link></li>  
-                        <li><g:link controller="admin" action="cliente">Cliente</g:link></li>
-                        <li><g:link controller="admin" action="propietario">Propietario</g:link></li>
-                        <li ><g:link controller="admin" action="propiedad">Propiedad</g:link></li>
-                        <li ><g:link controller="admin" action="consulta">Consulta</g:link></li>
-                        <li ><g:link controller="admin" action="contrato">Contrato</g:link></li>
-                        <li><g:link controller="admin" action="usuario">Usuario</g:link></li>
+                        <li class="active" ><g:link controller="principal" action="index">Inicio</g:link></li>  
+                        <li ><g:link controller="principal" action="propiedad">Propiedades</g:link></li>
                     </ul>
 
                 <g:if test="${session!=null && session.usuario!=null}">    
