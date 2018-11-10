@@ -5,7 +5,9 @@
     <title>Editar Cliente</title>
 </head>  
 <body>
-    <h1><g:link action="cliente">Editar Cliente</g:link></h1>  
+ 
+    <h1>Editar Cliente</h1>  
+ 
     <g:form action="guardarEditarCliente" id="${cliente.id}" method="POST">
         <fieldset class="form">
             <f:all bean="cliente" except="contratos" /> 

@@ -9,8 +9,6 @@
     <%-- dar estilo al titulo --%>
     <h1>Crear Propiedad</h1>  
     
-    
-    
     <g:form action="guardarAltaPropiedad" method="POST">
         <fieldset class="form">
             <f:all bean="propiedad"/>

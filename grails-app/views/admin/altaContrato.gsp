@@ -13,7 +13,7 @@
     
     <g:form action="guardarAltaContrato" method="POST">
         <fieldset class="form">
-            <f:all bean="contrato"/>
+            <f:all bean="contrato" except="propietario"/>
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="Guardar Contrato"/>

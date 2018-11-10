@@ -6,9 +6,7 @@
 </head>  
 <body>
 
-    <h1><g:link action="cliente">Crear Cliente</g:link></h1>  
-
-
+    <h1>Crear Cliente</h1>  
 
     <g:form action="guardarAltaCliente" method="POST">
         <fieldset class="form">
