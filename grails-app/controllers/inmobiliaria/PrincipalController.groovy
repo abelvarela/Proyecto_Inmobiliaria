@@ -4,7 +4,8 @@ class PrincipalController {
     def principalService
 
     def index() {
-        render(view: 'principal', model: [ listado: Propiedad.findAllByOferta(true)])
+        // render(view: 'principal', model: [ listado: Propiedad.findAllByOferta(true)])
+        render(view: 'principal', model: [ listado: Propiedad.findAll()])
     }
 
     def verPropiedad(Long id){

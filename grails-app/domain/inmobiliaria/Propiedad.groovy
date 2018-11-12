@@ -34,7 +34,7 @@ class Propiedad {
     }
 
     // static mapping = {
-        // imagen column: 'featured_image_bytes', sqlType: 'bytea' 
+    //     imagen sqlType: 'bytea' 
     // }
 
 

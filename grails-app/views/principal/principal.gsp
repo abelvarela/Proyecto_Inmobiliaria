@@ -44,7 +44,7 @@
 
 
 
-        <table class="table">
+        <%-- <table class="table">
             <tr>
                 <th>Tipo</th>
                 <th>Ubicacion</th>
@@ -54,7 +54,7 @@
                 <th>Ver</th>
             </tr>
 
-            <%-- en listado tenemos array de propiedades --%>
+            <%-- en listado tenemos array de propiedades 
             <g:each in="${listado?}">
                 <g:if test="${it.estado}">
                     <g:set var="estado" value="Si" />
@@ -72,6 +72,49 @@
                     <td><g:link action="verPropiedad" id="${it.id}">Ver más</g:link></td>
                 </tr>
             </g:each>
-        </table>
+        </table> --%>
+
+<div class="container">
+       
+       <g:each in="${listado?}"  
+
+ 
+
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm">
+                    <img class="card-img-top" src=${createLink(controller:"admin", action:"verImagen", id:"${it.imagen.id}")} style="height: 225px; width: 100%; display: block;" data-holder-rendered="true">
+                    <div class="card-body">
+                      <p class="card-text">Direccion:${it.direccion}
+                    
+                    <br> Ubicacion: ${it.ubicacion}
+                    <%-- <br> Ciudad: ${it.ciudad} --%>
+                    <br>  
+                    <br> Precio: $${it.precio}
+                      </p>
+
+
+                      <div class="d-flex justify-content-between align-items-center">
+                        
+                        <div class="buttons">
+                            <%-- <button type="button" class="btn btn-sm btn-outline-secondary"><g:link action="consultarPropiedad" id="${it.id}">Consultar</g:link></button>              --%>
+                            <g:link action="consultarPropiedad" id="${it.id}">Consultar</g:link>
+                        </div>
+
+                    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+           
+       </g:each>
+        <!-- </div> -->
+        </div>
+
+
+        </div>
+
+
+
     </body>  
 </html>

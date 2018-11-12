@@ -94,29 +94,8 @@ class AdminService {
 // ------------------ PROPIEDAD --------------------------
 
     def altaPropiedad(Map params){
-        println("pase por alta propiedad en service")
-        println("tipo ==== " + params.tipo)
-        println("ubicacion ==== " + params.ubicacion)
-        println("operacion ==== " + params.operacion)
-        println("direccion ==== " + params.direccion)
-        println("descripcion ==== " + params.descripcion)
-        println("precio ==== " + params.precio)
-        println("estado ==== " + params.estado)
-        println("oferta ==== " + params.oferta)
-        println("propietario ==== " + params.propietario)
-        
         params.propietario = ClientePropietario.get(params.propietario.id)
-        // params.precio = new BigDecimal(params.precio)
-        
         def propiedad = new Propiedad(params).save(flush:true)
-        // propiedad.imagen = new Imagen(imagen)
-        // if (propiedad.hasErrors()) {
-        //     propiedad.errors.allErrors.each {
-        //         println it
-        //     }
-        // }
-        // if(propiedad.save(flush:true))
-        //     println("el if de service alta propieda fue true")
         return propiedad.id
     }
 

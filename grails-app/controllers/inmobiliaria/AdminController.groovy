@@ -116,7 +116,6 @@ class AdminController {
     }
 
     def guardarAltaPropiedad(){
-        // def img = params.imagen
         def id = adminService.altaPropiedad(params)
         redirect(action:"verPropiedad", params: [id: id])
     }

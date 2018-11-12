@@ -27,12 +27,14 @@
             </li>
         </ol>
 
-        <div class="form-group row">
-            <label for="staticPhome" class="col-sm-4 col-form-label">Imagen:</label>
-            <div class="col-sm-7">            
-                    <%-- <img src=${createLink(controller:"admin", action:"verImagen", id:"${propiedad.imagen.id}")} width='300' /> --%>
+        <g:if test="${propiedad.imagen}">
+            <div class="form-group row">
+                <label for="staticPhome" class="col-sm-4 col-form-label">Imagen:</label>
+                <div class="col-sm-7">            
+                        <img src=${createLink(controller:"admin", action:"verImagen", id:"${propiedad.imagen.id}")} width='300' />
+                </div>
             </div>
-        </div>
+        </g:if>
 
 
     <%-- editar o eliminar --%>

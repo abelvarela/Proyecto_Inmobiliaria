@@ -10,7 +10,16 @@
 
         
         <%-- aqui se muestra propiedad --%>
-    <f:display bean="propiedad" except="propietario, estado, oferta" />
+    <f:display bean="propiedad" except="propietario, estado, oferta, imagen" />
+
+    <g:if test="${propiedad.imagen}">
+        <div class="form-group row">
+            <label for="staticPhome" class="col-sm-4 col-form-label">Imagen:</label>
+            <div class="col-sm-7">            
+                    <img src=${createLink(controller:"admin", action:"verImagen", id:"${propiedad.imagen.id}")} width='300' />
+            </div>
+        </div>
+    </g:if>
 
     
     <%-- nueva consulta --%>
@@ -18,8 +27,14 @@
     
     <g:form action="guardarConsultaPropiedad" id="${propiedad.id}" method="POST">
         <fieldset class="form">
-            <f:all bean="consulta" except="fecha, estado, propiedad"/>
+            <f:all bean="consulta" except="fecha, estado, propiedad, textoConsulta"/>
+            <div class="fieldcontain required">
+                <label for="textoConsulta">Consulta<span class="required-indicator">*</span></label>
+                <textarea id="textoConsulta" name="textoConsulta" maxlength="100" required></textarea>
+            </div>
+        
         </fieldset>
+
         <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="Enviar consulta"/>
             <g:link action="verPropiedad" id="${propiedad.id}" onclick="return confirm('¿Estás seguro?');">Cancelar</g:link>
