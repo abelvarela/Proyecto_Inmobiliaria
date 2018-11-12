@@ -27,24 +27,27 @@
             </li>
         </ol>
 
-        <div class="form-group row">
+        <%-- <div class="form-group row">
             <label for="staticPhome" class="col-sm-4 col-form-label">Imagen:</label>
             <div class="col-sm-7">            
-                    <%-- <img src=${createLink(controller:"admin", action:"verImagen", id:"${propiedad.imagen.id}")} width='300' /> --%>
+                    <img src=${createLink(controller:"admin", action:"verImagen", id:"${propiedad.id}")} width='300' />
             </div>
+        </div> --%>
+
+
+
+    <%-- guardar imagen --%>
+    <g:uploadForm action="guardarImagen" id="${propiedad.id}" method="POST">
+        <div class="fieldcontain">
+            <label for="myFile"> Imagen </label>
+            <input type="file" name="myFile" id="myFile"/>
         </div>
-
-
-    <%-- editar o eliminar --%>
-    <g:form action="confirmarEliminarPropiedad" id="${propiedad.id}" method="POST">
-            <%-- se agrega el fieldset y nombres de class --%>
-            <fieldset class="buttons">
-                <g:submitButton name="delete" class="delete" value="Eliminar" onclick="return confirm('¿Estás seguro?');"/>
-                <g:link class="edit" action="editarPropiedad" id="${propiedad.id}">Editar</g:link>
-                <g:link class="save" action="cargarImagen" id="${propiedad.id}">Cargar Imagen</g:link>
-                <g:link class="list" action="propiedad">Volver</g:link>
-            </fieldset>
-    </g:form>
+        <%-- se agrega el fieldset y nombres de class --%>
+        <fieldset class="buttons">
+            <g:submitButton name="save" class="save" value="Enviar"/>
+            <g:link class="list" action="verPropiedad" id="${propiedad.id}">Cancelar</g:link>
+        </fieldset>
+    </g:uploadForm>
 
 </body>  
 </html>

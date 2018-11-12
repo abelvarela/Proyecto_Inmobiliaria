@@ -1,5 +1,7 @@
 package inmobiliaria
+import grails.rest.Resource
 
+@Resource(uri='/propiedades')
 class Propiedad {
 
     String tipo
@@ -11,6 +13,7 @@ class Propiedad {
     Boolean estado
     Boolean oferta
     
+    Imagen imagen
 
     static belongsTo = [propietario: ClientePropietario]
 
@@ -22,10 +25,17 @@ class Propiedad {
         direccion(blank: false, maxSize: 100)
         descripcion(blank: false, maxSize: 100)
         precio(blank: false)
+
+        imagen(nullable: true)
     }
 
     String toString(){
         direccion
     }
+
+    // static mapping = {
+        // imagen column: 'featured_image_bytes', sqlType: 'bytea' 
+    // }
+
 
 }

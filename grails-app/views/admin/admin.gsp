@@ -5,11 +5,19 @@
     <title>Gestion de Stock</title>
 </head>  
 <body>
-    <h1><g:link action="cliente">Cliente</g:link></h1>
+    
+    
+    <h1> Administracion de Inmobiliaria </h1>
+    
+    
+    
+    
+    
+    <%-- <h1><g:link action="cliente">Cliente</g:link></h1>
     <h1><g:link action="propietario">Propietario</g:link></h1>
     <h1><g:link action="propiedad">Propiedad</g:link></h1>
     <h1><g:link action="usuario">Usuario</g:link></h1>
-    <g:link controller="login" action="logout">Cerrar</g:link>
+    <g:link controller="login" action="logout">Cerrar</g:link> --%>
 
         <%-- <g:form action="buscarCliente" method="POST">
             <label for="dni">Dni: </label>

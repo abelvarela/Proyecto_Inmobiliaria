@@ -25,8 +25,8 @@ class AdminController {
     }
 
     def guardarAltaCliente(){
-        adminService.altaCliente(params)
-        redirect(action:"cliente")
+        def id = adminService.altaCliente(params)
+        redirect(action:"verCliente" , params: [id: id])
     }
 
     def editarCliente(){
@@ -35,7 +35,7 @@ class AdminController {
 
     def guardarEditarCliente(){
         adminService.editarCliente(params)
-        redirect(action:"cliente")
+        redirect(action:"verCliente" , params: [id: params.id])
     }
 
     def eliminarCliente(){
@@ -70,8 +70,8 @@ class AdminController {
     }
 
     def guardarAltaPropietario(){
-        adminService.altaPropietario(params)
-        redirect(action:"propietario")
+        def id = adminService.altaPropietario(params)
+        redirect(action:"verPropietario", params: [id: id])
     }
 
     def editarPropietario(){
@@ -80,7 +80,7 @@ class AdminController {
 
     def guardarEditarPropietario(){
         adminService.editarPropietario(params)
-        redirect(action:"propietario")
+        redirect(action:"verPropietario", params: [id: params.id])
     }
 
     def eliminarPropietario(){
@@ -116,8 +116,9 @@ class AdminController {
     }
 
     def guardarAltaPropiedad(){
-        adminService.altaPropiedad(params)
-        redirect(action:"propiedad")
+        // def img = params.imagen
+        def id = adminService.altaPropiedad(params)
+        redirect(action:"verPropiedad", params: [id: id])
     }
 
     def editarPropiedad(){
@@ -126,7 +127,7 @@ class AdminController {
 
     def guardarEditarPropiedad(){
         adminService.editarPropiedad(params)
-        redirect(action:"propiedad")
+        redirect(action:"verPropiedad", params: [id: params.id])
     }
 
     def eliminarPropiedad(){
@@ -146,6 +147,25 @@ class AdminController {
         render(view:"propiedad", model: [listado: adminService.buscarPropiedad(params)])
     }
 
+    def cargarImagen(){
+        [propiedad: Propiedad.get(params.id)]
+    }
+
+    def guardarImagen(){
+        def propiedad = Propiedad.get(params.id)
+        def file = params.myFile
+        def imagen = new Imagen(imagen: file)
+        propiedad.imagen = imagen
+        propiedad.save(flush:true)
+        redirect(action:"verPropiedad", params: [id: params.id])
+    }
+
+    def verImagen(){
+        def img = Imagen.get(params.id)      
+        response.outputStream << img.imagen
+        response.outputStream.flush()
+    }
+
 
 
 // ------------------ FIN PROPIEDAD --------------------------
@@ -163,8 +183,8 @@ class AdminController {
     }
 
     def guardarAltaContrato(){
-        adminService.altaContrato(params)
-        redirect(action:"contrato")
+        def id = adminService.altaContrato(params)
+        redirect(action:"verContrato", params: [id: id])
     }
 
     def editarContrato(){
@@ -173,7 +193,7 @@ class AdminController {
 
     def guardarEditarContrato(){
         adminService.editarContrato(params)
-        redirect(action:"contrato")
+        redirect(action:"verContrato", params: [id: params.id])
     }
 
     def eliminarContrato(){

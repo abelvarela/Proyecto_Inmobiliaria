@@ -11,7 +11,7 @@
     
     <g:form action="guardarAltaPropiedad" method="POST">
         <fieldset class="form">
-            <f:all bean="propiedad"/>
+            <f:all bean="propiedad" except="imagen"/>
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="Guardar Propiedad"/>
