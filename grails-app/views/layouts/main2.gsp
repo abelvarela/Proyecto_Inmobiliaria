@@ -15,7 +15,11 @@
 </head>
 <body>
 
-
+    <%-- <style>
+        body {
+            background-image : url("https://www.sumandovalor.cl/app/webroot/img/content/rubros/13/fondo/fondo-madera-negro.jpg")
+        }
+    </style> --%>
     <nav class="navbar navbar-default navbar-inverse" role="navigation" style="background-color: black">
         <div class="container">
             <div class="navbar-header">
@@ -33,9 +37,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                      <ul class="nav navbar-nav">
                         <li class="active" ><g:link controller="principal" action="index">Inicio</g:link></li>  
-                        <li ><g:link controller="principal" action="propiedad">Propiedades</g:link></li>
+                        <li ><g:link controller="principal" action="index">Propiedades</g:link></li>
+                        <li ><g:link controller="principal" action="ofertas">Ofertas</g:link></li>
                     </ul>
 
+
+                    <ul class="nav navbar-nav navbar-right" >
+                        <li ><g:link controller="admin" action="index">Administración</g:link></li>
+                    </ul>
                 <g:if test="${session!=null && session.usuario!=null}">    
                     <ul class="nav navbar-nav navbar-right" >
                         <li class="dropdown">

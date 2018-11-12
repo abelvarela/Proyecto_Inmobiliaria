@@ -5,7 +5,7 @@ class PrincipalController {
 
     def index() {
         // render(view: 'principal', model: [ listado: Propiedad.findAllByOferta(true)])
-        render(view: 'principal', model: [ listado: Propiedad.findAll()])
+        render(view: 'principal', model: [ listado: Propiedad.findAllByEstado(true)])
     }
 
     def verPropiedad(Long id){
@@ -23,6 +23,16 @@ class PrincipalController {
     def guardarConsultaPropiedad(){
         principalService.guardarConsulta(params)
         redirect(action: 'index')
+    }
+
+    def verImagen(){
+        def img = Imagen.get(params.id)      
+        response.outputStream << img.imagen
+        response.outputStream.flush()
+    }
+
+    def ofertas(){
+        render(view:'principal', model: [listado: Propiedad.findAllByOfertaAndEstado(true,true)])
     }
 
 

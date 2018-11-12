@@ -5,10 +5,14 @@
 	    <title>Propiedad</title>
     </head>  
      <body>
-        
+        <style>
+        body {
+            background-image : url('${resource(dir: "images/", file: "casa.jpg")}')
+        }
+        </style>
         <%-- form de busqueda  --%>
-        <g:form controller="principal" action="buscarPropiedad" method="POST">
-            <%-- se agrega fieldset para estilo --%>
+        <%-- <g:form controller="principal" action="buscarPropiedad" method="POST">
+            se agrega fieldset para estilo
             <fieldset class="buttons">
                 <label for="tipo">Tipo: </label>
                 <select name ="tipo" id="tipo">
@@ -33,46 +37,17 @@
                     <option value="%%"> Todas </option>
                     <option value="Venta"> Venta </option>
                     <option value="Alquiler"> Alquiler </option>
-                </select>
+                </select> --%>
                  <%-- agregar buscar por operacion --%>
-                <g:submitButton name="search" class="search" value="Buscar"/>
+                <%-- <g:submitButton name="search" class="search" value="Buscar"/>
                 <g:link class="list" controller="principal" action="principal">Mostrar todos</g:link>
             </fieldset>
-        </g:form>
+        </g:form> --%>
 
 
 
 
 
-        <%-- <table class="table">
-            <tr>
-                <th>Tipo</th>
-                <th>Ubicacion</th>
-                <th>Operacion</th>
-                <th>Direccion</th>
-                <th>Precio</th>
-                <th>Ver</th>
-            </tr>
-
-            <%-- en listado tenemos array de propiedades 
-            <g:each in="${listado?}">
-                <g:if test="${it.estado}">
-                    <g:set var="estado" value="Si" />
-                </g:if>
-                <g:else>
-                    <g:set var="estado" value="No" />
-                </g:else>    
-            
-                <tr>
-                    <td>${it.tipo}</td>
-                    <td>${it.ubicacion}</td>
-                    <td>${it.operacion}</td>
-                    <td>${it.direccion}</td>
-                    <td>${it.precio}</td>                    
-                    <td><g:link action="verPropiedad" id="${it.id}">Ver más</g:link></td>
-                </tr>
-            </g:each>
-        </table> --%>
 
 <div class="container">
        
@@ -80,31 +55,31 @@
 
  
 
-          <div class="row">
-              <div class="col-md-4">
-                  <div class="card mb-4 shadow-sm">
-                    <img class="card-img-top" src=${createLink(controller:"admin", action:"verImagen", id:"${it.imagen.id}")} style="height: 225px; width: 100%; display: block;" data-holder-rendered="true">
-                    <div class="card-body">
-                      <p class="card-text">Direccion:${it.direccion}
-                    
-                    <br> Ubicacion: ${it.ubicacion}
-                    <%-- <br> Ciudad: ${it.ciudad} --%>
-                    <br>  
-                    <br> Precio: $${it.precio}
-                      </p>
-
-
-                      <div class="d-flex justify-content-between align-items-center">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" src=${createLink(controller:"principal", action:"verImagen", id:"${it.imagen.id}")} style="height: 225px; width: 100%; display: block;" data-holder-rendered="true">
+                        <div class="card-body">
+                        <p class="card-text">Direccion:${it.direccion}
                         
-                        <div class="buttons">
-                            <%-- <button type="button" class="btn btn-sm btn-outline-secondary"><g:link action="consultarPropiedad" id="${it.id}">Consultar</g:link></button>              --%>
-                            <g:link action="consultarPropiedad" id="${it.id}">Consultar</g:link>
-                        </div>
+                        <br> Ubicacion: ${it.ubicacion}
+                        <%-- <br> Ciudad: ${it.ciudad} --%>
+                        <br>  
+                        <br> Precio: $${it.precio}
+                        </p>
 
-                    
-                      </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            
+                            <div class="buttons">
+                                <%-- <button type="button" class="btn btn-sm btn-outline-secondary"><g:link action="consultarPropiedad" id="${it.id}">Consultar</g:link></button>              --%>
+                                <g:link action="consultarPropiedad" id="${it.id}">Consultar</g:link>
+                            </div>
+
+                        
+                        </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
            
        </g:each>

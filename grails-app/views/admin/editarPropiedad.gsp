@@ -8,7 +8,7 @@
     <h1><g:link action="propiedad">Editar Propiedad</g:link></h1>  
     <g:form action="guardarEditarPropiedad" id="${propiedad.id}" method="POST">
         <fieldset class="form">
-            <f:all bean="propiedad" except="contratos" /> 
+            <f:all bean="propiedad" except="contratos, imagen" /> 
             <%-- <div class="fieldcontain required">
                 <label for="precio">
                     Precio<span class="required-indicator">*</span>

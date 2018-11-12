@@ -6,7 +6,13 @@
 </head>
 <body>
 
-    <h1><g:link action="propiedad">Ver Propiedad</g:link></h1>  
+    <style>
+        body {
+            background-image : url('${resource(dir: "images/", file: "casa.jpg")}')
+        }
+    </style>
+
+    
 
         
         <%-- aqui se muestra propiedad --%>

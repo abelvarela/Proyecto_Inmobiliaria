@@ -25,7 +25,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="/principal">
 
 		            <asset:image src="icono4.png" alt="logo_inmobiliaria"/>
                 </a>
