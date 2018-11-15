@@ -5,11 +5,12 @@
 	    <title>Propiedad</title>
     </head>  
      <body>
-        
+        <h1 style="text-align: center"> Propiedad </h1>
         <%-- form de busqueda  --%>
         <g:form action="buscarPropiedad" method="POST">
             <%-- se agrega fieldset para estilo --%>
             <fieldset class="buttons">
+                <h2>Busqueda:</h2>
                 <label for="tipo">Tipo: </label>
                 <select name ="tipo" id="tipo">
                     <option value="%%"> Todos </option>
@@ -72,9 +73,9 @@
                     <td>${it.operacion}</td>
                     <td>${it.direccion}</td>
                     <td>${it.precio}</td>
-                    <td><g:link action="verPropietario" id="${it.propietario.id}">${it.propietario.nombre} ${it.propietario.apellido}</g:link></td>
+                    <td><span class="buttons"><g:link action="verPropietario" id="${it.propietario.id}">${it.propietario.nombre} ${it.propietario.apellido}</g:link></span></td>
                     <td>${estado}</td>
-                    <td><g:link action="verPropiedad" id="${it.id}">Ver</g:link></td>
+                    <td><span class="buttons"><g:link action="verPropiedad" id="${it.id}">Ver</g:link></span></td>
                 </tr>
             </g:each>
         </table>

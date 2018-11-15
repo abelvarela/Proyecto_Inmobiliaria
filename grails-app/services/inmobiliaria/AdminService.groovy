@@ -130,22 +130,8 @@ class AdminService {
     }
 
     def buscarPropiedad(Map params){
-        // if(params.tipo!="" && params.ubicacion!=""){
-        //     return Propiedad.findAllByTipoAndUbicacion(params.tipo,params.ubicacion,[sort: "ubicacion", order: "asc"])
-        // }else if(params.tipo!="" && params.ubicacion==""){
-        //     return Propiedad.findAllByTipo(params.tipo,[sort: "ubicacion", order: "asc"])
-        // }else if(params.tipo=="" && params.ubicacion!="") {
-        //     return Propiedad.findAllByUbicacion(params.ubicacion,[sort: "tipo", order: "asc"])
-        // }else{
-        //     return Propiedad.findAll([sort: "ubicacion", order: "asc"])
-        // }
-
         return Propiedad.findAll("from Propiedad as p where p.tipo like :tipo and p.ubicacion like :ubicacion and p.operacion like :operacion",
         [tipo: params.tipo, ubicacion: params.ubicacion, operacion: params.operacion])
-
-
-
-
     }
 
 // ------------------- FIN PROPIEDAD ----------------------
@@ -302,5 +288,27 @@ class AdminService {
     }
 
 // ------------------- FIN USUARIO ----------------------
+
+
+
+// ------------------- CONSULTA ----------------------
+    def buscarConsulta(Map params){
+        def propiedad = ""
+        params.nombreApellido = "%" + params.nombreApellido + "%"
+        params.telefono = "%" + params.telefono + "%"
+        params.email = "%" + params.email + "%"
+        if(params.propiedad=="%%")    
+            return Consulta.findAllByNombreApellidoLikeAndTelefonoLikeAndEmailLike(params.nombreApellido,params.telefono,params.email)
+        else
+            propiedad = Propiedad.get(params.propiedad)        
+            return Consulta.findAllByNombreApellidoLikeAndTelefonoLikeAndEmailLikeAndPropiedad(params.nombreApellido,params.telefono,params.email,propiedad)
+        
+
+    }
+
+// ------------------- FIN CONSULTA ----------------------
+
+
+
 
 }

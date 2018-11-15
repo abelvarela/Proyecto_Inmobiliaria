@@ -5,11 +5,12 @@
 	    <title>Cliente</title>
     </head>  
      <body>
-        
+        <h1 style="text-align: center"> Cliente </h1>
         <%-- formulario de busqueda --%>
         <g:form action="buscarCliente" method="POST">
             <%-- se agrega fieldset para estilo --%>
             <fieldset class="buttons">
+                <h2>Busqueda:</h2>
                 <label for="dni">Dni: </label>
                 <input type="search" name="dni" id="dni"/>
                 <label for="apellido">Apellido: </label>
@@ -44,7 +45,7 @@
                     <td>${it.dni}</td>
                     <td>${it.telefono}</td>
                     <td>${it.email}</td>
-                    <td><g:link action="verCliente" id="${it.id}">Ver</g:link></td>
+                    <td><span class="buttons"><g:link action="verCliente" id="${it.id}">Ver</g:link></span></td>
                 </tr>
             </g:each>
         </table>

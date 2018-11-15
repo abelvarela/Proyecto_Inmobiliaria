@@ -5,11 +5,12 @@
 	    <title>Contrato</title>
     </head>  
      <body>
-        
+        <h1 style="text-align: center"> Contrato </h1>
         <%-- form de busqueda  --%>
         <g:form action="buscarContrato" method="POST">
             <%-- se agrega fieldset para estilo --%>
             <fieldset class="buttons">
+                <h2>Busqueda:</h2>
                 <label for="cliente">Cliente: </label>
                 <select name ="cliente" id="cliente">
                     <option value="%%"> Todos </option>                    
@@ -66,11 +67,11 @@
             <%-- en listado tenemos array de contratos --%>
             <g:each in="${listado?}">            
                 <tr>
-                    <td><g:link action="verCliente" id="${it.cliente.id}">${it.cliente.nombre} ${it.cliente.apellido}</g:link></td>
-                    <td><g:link action="verPropietario" id="${it.propietario.id}">${it.propietario.nombre} ${it.propietario.apellido}</g:link></td>
+                    <td><span class="buttons"><g:link action="verCliente" id="${it.cliente.id}">${it.cliente.nombre} ${it.cliente.apellido}</g:link></span></td>
+                    <td><span class="buttons"><g:link action="verPropietario" id="${it.propietario.id}">${it.propietario.nombre} ${it.propietario.apellido}</g:link></span></td>
                     <td>${it.propiedad.tipo}</td>
                     <td>${it.propiedad.ubicacion}</td>
-                    <td><g:link action="verContrato" id="${it.id}">Ver</g:link></td>
+                    <td><span class="buttons"><g:link action="verContrato" id="${it.id}">Ver</g:link></span></td>
                 </tr>
             </g:each>
         </table>

@@ -7,49 +7,60 @@ class BootStrap {
 
 
     // def cliente = new Cliente(
-    //     nombre: "Joaquin" ,
-    //     apellido: "Gonzalez" ,
+    //     nombre: "Gabriel" ,
+    //     apellido: "Heinze" ,
     //     sexo: 'M' ,
-    //     dni: "37632999" ,
+    //     dni: "37632990" ,
     //     fechaNacimiento: new Date() ,
     //     domicilio: "San antonio" ,
     //     telefono: "383-4021123" ,
-    //     email: "joaqin@gmail.com"
-    // ).save()
+    //     email: "gh@gmail.com"
+    // ).save(flush: true)
 
     // def cliente2 = new Cliente(
-    //     nombre: "Daniel" ,
-    //     apellido: "Varela" ,
+    //     nombre: "Lucas" ,
+    //     apellido: "Bernardi" ,
     //     sexo: 'M' ,
-    //     dni: "37632999" ,
+    //     dni: "37632949" ,
     //     fechaNacimiento: new Date() ,
     //     domicilio: "San antonio" ,
     //     telefono: "383-4021123" ,
-    //     email: "daniel@gmail.com"
-    // ).save()
+    //     email: "lb@gmail.com"
+    // ).save(flush: true)
 
 
     // def propietario = new ClientePropietario(
-    //     nombre: "Ernesto" ,
-    //     apellido: "Galindez" ,
+    //     nombre: "Gerardo" ,
+    //     apellido: "Martino" ,
     //     sexo: 'M' ,
-    //     dni: "37632888" ,
+    //     dni: "37632818" ,
     //     fechaNacimiento: new Date() ,
     //     domicilio: "San antonio" ,
     //     telefono: "383-4021123" ,
-    //     email: "ernesto@gmail.com"
-    // ).save()
+    //     email: "gm@gmail.com"
+    // ).save(flush: true)
 
     // def propietario2 = new ClientePropietario(
-    //     nombre: "Miguel" ,
-    //     apellido: "Fadel" ,
+    //     nombre: "Lionel" ,
+    //     apellido: "Messi" ,
     //     sexo: 'M' ,
-    //     dni: "37632888" ,
+    //     dni: "37632858" ,
     //     fechaNacimiento: new Date() ,
     //     domicilio: "San antonio" ,
     //     telefono: "383-4021123" ,
-    //     email: "mf@gmail.com"
-    // ).save()
+    //     email: "liomessi@gmail.com"
+    // ).save(flush: true)
+
+    // def propietario3 = new ClientePropietario(
+    //     nombre: "Marcelo" ,
+    //     apellido: "Bielsa" ,
+    //     sexo: 'M' ,
+    //     dni: "74899091" ,
+    //     fechaNacimiento: new Date() ,
+    //     domicilio: "Parque Independencia" ,
+    //     telefono: "383-4021123" ,
+    //     email: "marcelobielsa@gmail.com"
+    // ).save(flush: true)
 
     // def propiedad = new Propiedad(
     //     tipo: "Casa" ,
@@ -61,7 +72,7 @@ class BootStrap {
     //     estado: true ,
     //     oferta: false ,
     //     propietario: propietario
-    // ).save()
+    // ).save(flush: true)
 
     // def propiedad2 = new Propiedad(
     //     tipo: "Oficina" ,
@@ -73,7 +84,7 @@ class BootStrap {
     //     estado: false ,
     //     oferta: true ,
     //     propietario: propietario2
-    // ).save()
+    // ).save(flush: true)
 
     // def contrato = new Contrato(
     //     fechaOperacion: new Date() ,
@@ -83,7 +94,7 @@ class BootStrap {
     //     propiedad: propiedad ,
     //     propietario:  propiedad.propietario ,
     //     cliente:  cliente 
-    // ).save()
+    // ).save(flush: true)
 
     // def contrato2 = new Contrato(
     //     fechaOperacion: new Date() ,
@@ -93,7 +104,7 @@ class BootStrap {
     //     propiedad: propiedad2 ,
     //     propietario:  propiedad2.propietario ,
     //     cliente:  cliente2 
-    // ).save()
+    // ).save(flush: true)
 
 
 

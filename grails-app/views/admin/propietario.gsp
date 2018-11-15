@@ -5,11 +5,12 @@
 	    <title>Propietario</title>
     </head>  
      <body>
-
+        <h1 style="text-align: center"> Propietario </h1>
         <%-- formulario de busqueda --%>
         <g:form action="buscarPropietario" method="POST">
             <%-- se agrega fieldset para estilo --%>
             <fieldset class="buttons">
+                <h2>Busqueda:</h2>
                 <label for="dni">Dni: </label>
                 <input type="search" name="dni" id="dni"/>
                 <label for="apellido">Apellido: </label>
@@ -42,7 +43,7 @@
                     <td>${it.dni}</td>
                     <td>${it.telefono}</td>
                     <td>${it.email}</td>
-                    <td><g:link action="verPropietario" id="${it.id}">Ver</g:link></td>
+                    <td><span class="buttons"><g:link action="verPropietario" id="${it.id}">Ver</g:link></span></td>
                 </tr>
             </g:each>
         </table>

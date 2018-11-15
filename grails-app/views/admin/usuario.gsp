@@ -5,20 +5,24 @@
 	    <title>Usuario</title>
     </head>  
      <body>
-        <h1><g:link action="index">Inicio</g:link></h1>
-
+        <h1 style="text-align: center"> Usuario </h1>
+        <%-- formulario de busqueda --%>
         <g:form action="buscarUsuario" method="POST">
-            <label for="email">Email: </label>
-            <input type="search" name="email" id="email"/>
-            <label for="nombreUsuario">Usuario: </label>
-            <input type="search" name="nombreUsuario" id="nombreUsuario"/>
-            <label for="apellido">Apellido: </label>
-            <input type="search" name="apellido" id="apellido"/>
-            <label for="nombre">Nombre: </label>
-            <input type="search" name="nombre" id="nombre"/>
-            <g:submitButton name="search" class="search" value="Buscar"/>
-            <g:link action="usuario">Mostrar todos</g:link>
-            <g:link action="altaUsuario">Crear usuario</g:link>
+            <%-- se agrega fieldset para estilo --%>
+            <fieldset class="buttons">
+                <h2>Busqueda:</h2>
+                <label for="email">Email: </label>
+                <input type="search" name="email" id="email"/>
+                <label for="nombreUsuario">Usuario: </label>
+                <input type="search" name="nombreUsuario" id="nombreUsuario"/>
+                <label for="apellido">Apellido: </label>
+                <input type="search" name="apellido" id="apellido"/>
+                <label for="nombre">Nombre: </label>
+                <input type="search" name="nombre" id="nombre"/>
+                <g:submitButton name="search" class="search" value="Buscar"/>
+                <g:link action="usuario">Mostrar todos</g:link>
+                <g:link action="altaUsuario">Crear usuario</g:link>
+            </fieldset>
         </g:form>
 
 
@@ -27,8 +31,7 @@
                 <th>Usuario</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>Email</th>
                 <th>Ver</th>
             </tr>
             <g:each in="${listado?}">
@@ -36,9 +39,8 @@
                     <td>${it.nombreUsuario}</td>
                     <td>${it.nombre}</td>
                     <td>${it.apellido}</td>
-                    <td><g:link action="editarUsuario" id="${it.id}">Editar</g:link></td>
-                    <td><g:link action="eliminarUsuario" id="${it.id}">Eliminar</g:link></td>
-                    <td><g:link action="verUsuario" id="${it.id}">Ver</g:link></td>
+                    <td>${it.email}</td>
+                    <td><span class="buttons"><g:link action="verUsuario" id="${it.id}">Ver</g:link></span></td>
                 </tr>
             </g:each>
         </table>

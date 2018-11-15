@@ -21,7 +21,7 @@ class ClientePropietario {
         nombre(blank: false, maxSize: 100)
         apellido(blank: false, maxSize: 100)
         sexo(blank: false, inList:['F','M'])
-        dni(blank: false, minSize: 7, maxSize: 8)
+        dni(blank: false, minSize: 7, maxSize: 8, unique: true)
         fechaNacimiento(blank: false)
         domicilio(blank: true)
         telefono(blank: false, matches: "[0-9]{3}-[0-9]{7}")

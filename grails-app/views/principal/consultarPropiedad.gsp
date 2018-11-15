@@ -22,7 +22,7 @@
         <div class="form-group row">
             <label for="staticPhome" class="col-sm-4 col-form-label">Imagen:</label>
             <div class="col-sm-7">            
-                    <img src=${createLink(controller:"admin", action:"verImagen", id:"${propiedad.imagen.id}")} width='300' />
+                    <img src=${createLink(controller:"principal", action:"verImagen", id:"${propiedad.imagen.id}")} width='300' />
             </div>
         </div>
     </g:if>

@@ -172,9 +172,10 @@ class AdminController {
 
 // ------------------ CONTRATO --------------------------
     def contrato(){
-        render(view:"contrato", model: [listado: Contrato.findAll([sort: "cliente.apellido", order: "asc"]),
+        def map = [listado: Contrato.findAll([sort: "cliente.apellido", order: "asc"]),
         clientes: Cliente.findAll([sort: "apellido", order: "asc"]), propiedades: Propiedad.findAll([sort: "ubicacion", order: "asc"]),
-        propietarios: ClientePropietario.findAll([sort: "apellido", order: "asc"]) ])
+        propietarios: ClientePropietario.findAll([sort: "apellido", order: "asc"]) ]
+        render(view:"contrato", model: map)
     }
 
     def altaContrato(){
@@ -209,9 +210,10 @@ class AdminController {
     }
 
     def buscarContrato(){
-        render(view:"contrato", model: [listado: adminService.buscarContrato(params),
+        def map = [listado: adminService.buscarContrato(params),
         clientes: Cliente.findAll([sort: "apellido", order: "asc"]), propiedades: Propiedad.findAll([sort: "ubicacion", order: "asc"]),
-        propietarios: ClientePropietario.findAll([sort: "apellido", order: "asc"]) ])
+        propietarios: ClientePropietario.findAll([sort: "apellido", order: "asc"]) ]
+        render(view:"contrato", model: map)
     }
 
 
@@ -222,21 +224,27 @@ class AdminController {
 // ------------------ CONSULTA --------------------------
 
     def consulta(){
-        render(view:"consulta", model: [listado: Consulta.findAll([sort: "fecha", order: "desc"]),
-        propiedades: Propiedad.findAll([sort: "ubicacion", order: "asc"])])
+        def map = [listado: Consulta.findAll([sort: "fecha", order: "desc"]),
+        propiedades: Propiedad.findAll([sort: "ubicacion", order: "asc"])]
+        render(view:"consulta", model: map)
     }
 
-    def verConsulta(Long id){
-        [consulta: Consulta.get(id)]
+    def verConsulta(){
+        [consulta: Consulta.get(params.id)]
     }
 
-    def atenderConsulta(Long id){
-        def consulta = Consulta.get(id)
+    def atenderConsulta(){
+        def consulta = Consulta.get(params.id)
         consulta.estado = 'Atendido'
         consulta.save(flush:true)
         redirect(action: 'consulta')
     }
 
+    def buscarConsulta(){
+        def map = [listado: adminService.buscarConsulta(params),
+        propiedades: Propiedad.findAll([sort: "ubicacion", order: "asc"])]
+        render(view:"consulta", model: map)
+    }
 
 
 

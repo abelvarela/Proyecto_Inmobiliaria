@@ -1,7 +1,6 @@
 package inmobiliaria
 import grails.rest.Resource
 
-@Resource(uri='/propiedades')
 class Propiedad {
 
     String tipo
