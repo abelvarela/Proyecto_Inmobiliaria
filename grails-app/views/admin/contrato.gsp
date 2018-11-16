@@ -27,6 +27,14 @@
                     </g:each>
                 </select>
 
+                <label for="propiedad">Propietario: </label>
+                <select name ="propiedad" id="propiedad">
+                    <option value="%%"> Todas </option>                    
+                    <g:each in="${propiedades}">
+                        <option value="${it.id}"> ${it.direccion} </option>
+                    </g:each>
+                </select>
+
                 <label for="tipo">Tipo:</label>
                 <select name ="tipo" id="tipo">
                     <option value="%%">Todos</option>

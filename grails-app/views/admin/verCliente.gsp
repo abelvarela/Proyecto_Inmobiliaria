@@ -24,7 +24,7 @@
         <li class="fieldcontain">
             <span id="tipo-label" class="property-label">Fecha Nacimiento</span>
             <div class="property-value" aria-labelledby="tipo-label" >
-                ${cliente.fechaNacimiento.year + 1900}-${cliente.fechaNacimiento.month}-${cliente.fechaNacimiento.date}  
+                ${cliente.fechaNacimiento.year + 1900}-${cliente.fechaNacimiento.month + 1}-${cliente.fechaNacimiento.date}  
             </div>
         </li>
     </ol>

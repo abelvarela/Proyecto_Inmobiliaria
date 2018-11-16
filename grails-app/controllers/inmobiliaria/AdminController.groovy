@@ -52,7 +52,11 @@ class AdminController {
     }
 
     def buscarCliente(){
-        // def clientes = adminService.buscarCliente(params)
+        params.orden = "apellido"
+        render(view:"cliente", model: [listado: adminService.buscarCliente(params)])
+    }
+
+    def ordenarCliente(){
         render(view:"cliente", model: [listado: adminService.buscarCliente(params)])
     }
 
@@ -97,7 +101,11 @@ class AdminController {
     }
 
     def buscarPropietario(){
-        // def propietarios = adminService.buscarPropietario(params)
+        params.orden = "apellido"
+        render(view:"propietario", model: [listado: adminService.buscarPropietario(params)])
+    }
+
+    def ordenarPropietario(){
         render(view:"propietario", model: [listado: adminService.buscarPropietario(params)])
     }
 
@@ -143,6 +151,7 @@ class AdminController {
     }
 
     def buscarPropiedad(){
+        params.orden = "ubicacion"
         render(view:"propiedad", model: [listado: adminService.buscarPropiedad(params)])
     }
 
@@ -164,6 +173,12 @@ class AdminController {
         response.outputStream << img.imagen
         response.outputStream.flush()
     }
+
+    def ordenarPropiedad(){
+        render(view: "propiedad", model: [listado: adminService.buscarPropiedad(params)])
+    }
+
+
 
 
 

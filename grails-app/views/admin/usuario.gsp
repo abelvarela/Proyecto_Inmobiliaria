@@ -11,14 +11,14 @@
             <%-- se agrega fieldset para estilo --%>
             <fieldset class="buttons">
                 <h2>Busqueda:</h2>
-                <label for="email">Email: </label>
-                <input type="search" name="email" id="email"/>
                 <label for="nombreUsuario">Usuario: </label>
                 <input type="search" name="nombreUsuario" id="nombreUsuario"/>
-                <label for="apellido">Apellido: </label>
-                <input type="search" name="apellido" id="apellido"/>
                 <label for="nombre">Nombre: </label>
                 <input type="search" name="nombre" id="nombre"/>
+                <label for="apellido">Apellido: </label>
+                <input type="search" name="apellido" id="apellido"/>
+                <label for="email">Email: </label>
+                <input type="search" name="email" id="email"/>
                 <g:submitButton name="search" class="search" value="Buscar"/>
                 <g:link action="usuario">Mostrar todos</g:link>
                 <g:link action="altaUsuario">Crear usuario</g:link>

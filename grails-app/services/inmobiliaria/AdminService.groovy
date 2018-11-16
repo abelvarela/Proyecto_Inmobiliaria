@@ -33,16 +33,34 @@ class AdminService {
     }
 
     def buscarCliente(Map params){
-        if(params.dni){
-            params.dni = '%'+params.dni+'%'
-            return Cliente.findAllByDniLike(params.dni)
-        }else if(params.apellido){
-            params.apellido = '%'+params.apellido+'%'
-            return Cliente.findAllByApellidoLike(params.apellido)
-        }else {
-            params.nombre = '%'+params.nombre+'%'
-            return Cliente.findAllByNombreLike(params.nombre)
-        }
+        
+        if(params.fechaD)
+            params.fechaD = Date.parse("yyyy-MM-dd",params.fechaD)
+        else
+            params.fechaD = Date.parse("yyyy-MM-dd","1900-01-01")
+        if(params.fechaH)
+            params.fechaH = Date.parse("yyyy-MM-dd",params.fechaH)
+        else
+            params.fechaH = new Date()
+
+        params.nombre = "%" + params.nombre + "%"
+        params.apellido = "%" + params.apellido + "%"
+        params.dni = "%" + params.dni + "%"
+        params.telefono = "%" + params.telefono + "%"
+        params.email = "%" + params.email + "%"
+        params.domicilio = "%" + params.domicilio + "%"
+        
+        def listado = Cliente.findAllByNombreLikeAndApellidoLikeAndDniLikeAndTelefonoLikeAndEmailLikeAndDomicilioLikeAndSexoLikeAndFechaNacimientoBetween(
+            params.nombre,params.apellido,params.dni,params.telefono,params.email,params.domicilio,params.sexo,params.fechaD,params.fechaH)
+        
+        if(params.orden=="nombre") listado.sort{it.nombre}
+        if(params.orden=="apellido") listado.sort{it.apellido}
+        if(params.orden=="dni") listado.sort{it.dni}
+        if(params.orden=="telefono") listado.sort{it.telefono}
+        if(params.orden=="email") listado.sort{it.email}    
+
+        return listado
+        
     }
 
 // ------------------- FIN CLIENTE ----------------------
@@ -76,16 +94,34 @@ class AdminService {
     }
 
     def buscarPropietario(Map params){
-        if(params.dni){
-            params.dni = '%'+params.dni+'%'
-            return ClientePropietario.findAllByDniLike(params.dni)
-        }else if(params.apellido){
-            params.apellido = '%'+params.apellido+'%'
-            return ClientePropietario.findAllByApellidoLike(params.apellido)
-        }else {
-            params.nombre = '%'+params.nombre+'%'
-            return ClientePropietario.findAllByNombreLike(params.nombre)
-        }
+
+        if(params.fechaD)
+            params.fechaD = Date.parse("yyyy-MM-dd",params.fechaD)
+        else
+            params.fechaD = Date.parse("yyyy-MM-dd","1900-01-01")
+        if(params.fechaH)
+            params.fechaH = Date.parse("yyyy-MM-dd",params.fechaH)
+        else
+            params.fechaH = new Date()
+
+        params.nombre = "%" + params.nombre + "%"
+        params.apellido = "%" + params.apellido + "%"
+        params.dni = "%" + params.dni + "%"
+        params.telefono = "%" + params.telefono + "%"
+        params.email = "%" + params.email + "%"
+        params.domicilio = "%" + params.domicilio + "%"
+        
+        def listado = ClientePropietario.findAllByNombreLikeAndApellidoLikeAndDniLikeAndTelefonoLikeAndEmailLikeAndDomicilioLikeAndSexoLikeAndFechaNacimientoBetween(
+            params.nombre,params.apellido,params.dni,params.telefono,params.email,params.domicilio,params.sexo,params.fechaD,params.fechaH,[sort: "apellido", order: "asc"])
+
+        if(params.orden=="nombre") listado.sort{it.nombre}
+        if(params.orden=="apellido") listado.sort{it.apellido}
+        if(params.orden=="dni") listado.sort{it.dni}
+        if(params.orden=="telefono") listado.sort{it.telefono}
+        if(params.orden=="email") listado.sort{it.email}    
+
+        return listado
+        
     }
 
 // ------------------- FIN PROPIETARIO ----------------------
@@ -130,8 +166,34 @@ class AdminService {
     }
 
     def buscarPropiedad(Map params){
-        return Propiedad.findAll("from Propiedad as p where p.tipo like :tipo and p.ubicacion like :ubicacion and p.operacion like :operacion",
-        [tipo: params.tipo, ubicacion: params.ubicacion, operacion: params.operacion])
+        // return Propiedad.findAll("from Propiedad as p where p.tipo like :tipo and p.ubicacion like :ubicacion and p.operacion like :operacion",
+        // [tipo: params.tipo, ubicacion: params.ubicacion, operacion: params.operacion])
+    
+        
+        // def aux
+        // if (params.precioMax < params.precioMin)
+        //     aux = params.precioMax
+        //     params.precioMax = params.precioMin
+        //     params.precioMin = aux
+            
+        // params.precioMin = new BigDecimal(params.precioMin)
+        // params.precioMax = new BigDecimal(params.precioMax)
+
+        // return Propiedad.findAllByTipoLikeAndUbicacionLikeAndOperacionLikeAndDireccionLikeAndPrecioBetween(params.tipo,params.ubicacion,params.operacion,params.direccion,params.precioMin,params.precioMax,[sort: "ubicacion", order: "asc"])
+        params.direccion = "%" + params.direccion + "%"
+        def listado = Propiedad.findAllByTipoLikeAndUbicacionLikeAndOperacionLikeAndDireccionLikeAndPrecioBetween(params.tipo,params.ubicacion,params.operacion,params.direccion,params.precioMin,params.precioMax)
+        
+        
+        if(params.orden=="tipo") listado.sort{it.tipo}
+        if(params.orden=="ubicacion") listado.sort{it.ubicacion}
+        if(params.orden=="operacion") listado.sort{it.operacion}
+        if(params.orden=="direccion") listado.sort{it.direccion}
+        if(params.orden=="precio") listado.sort{it.precio}
+        if(params.orden=="estado") listado.sort{it.estado}
+        if(params.orden=="oferta") listado.sort{it.oferta}
+        
+        return listado
+
     }
 
 // ------------------- FIN PROPIEDAD ----------------------
@@ -236,6 +298,12 @@ class AdminService {
 
 
 
+
+
+
+
+
+
     }
 
 // ------------------- FIN CONTRATO ----------------------
@@ -272,19 +340,31 @@ class AdminService {
     }
 
     def buscarUsuario(Map params){
-        if(params.email){
-            params.email = '%'+params.email+'%'
-            return Usuario.findAllByEmailLike(params.email)
-        }else if(params.nombreUsuario){
-            params.nombreUsuario = '%'+params.nombreUsuario+'%'
-            return Usuario.findAllByNombreUsuarioLike(params.nombreUsuario)
-        }else if(params.apellido){
-            params.apellido = '%'+params.apellido+'%'
-            return Usuario.findAllByApellidoLike(params.apellido)
-        }else {
-            params.nombre = '%'+params.nombre+'%'
-            return Usuario.findAllByNombreLike(params.nombre)
-        }
+        // if(params.email){
+        //     params.email = '%'+params.email+'%'
+        //     return Usuario.findAllByEmailLike(params.email)
+        // }else if(params.nombreUsuario){
+        //     params.nombreUsuario = '%'+params.nombreUsuario+'%'
+        //     return Usuario.findAllByNombreUsuarioLike(params.nombreUsuario)
+        // }else if(params.apellido){
+        //     params.apellido = '%'+params.apellido+'%'
+        //     return Usuario.findAllByApellidoLike(params.apellido)
+        // }else {
+        //     params.nombre = '%'+params.nombre+'%'
+        //     return Usuario.findAllByNombreLike(params.nombre)
+        // }
+
+        params.nombreUsuario = "%" + params.nombreUsuario + "%"
+        params.nombre = "%" + params.nombre + "%"
+        params.apellido = "%" + params.apellido + "%"
+        params.email = "%" + params.email + "%"
+
+        return Usuario.findAllByNombreUsuarioLikeAndNombreLikeAndApellidoLikeAndEmailLike(params.nombreUsuario,params.nombre,params.apellido,params.email,[sort: "apellido", order: "asc"])
+
+
+
+
+
     }
 
 // ------------------- FIN USUARIO ----------------------
@@ -293,15 +373,14 @@ class AdminService {
 
 // ------------------- CONSULTA ----------------------
     def buscarConsulta(Map params){
-        def propiedad = ""
+        def propiedad = Propiedad.get(params.propiedad)
         params.nombreApellido = "%" + params.nombreApellido + "%"
         params.telefono = "%" + params.telefono + "%"
         params.email = "%" + params.email + "%"
-        if(params.propiedad=="%%")    
-            return Consulta.findAllByNombreApellidoLikeAndTelefonoLikeAndEmailLike(params.nombreApellido,params.telefono,params.email)
+        if(propiedad)    
+            return Consulta.findAllByNombreApellidoLikeAndTelefonoLikeAndEmailLikeAndPropiedad(params.nombreApellido,params.telefono,params.email,propiedad,[sort: "estado", order: "desc"])
         else
-            propiedad = Propiedad.get(params.propiedad)        
-            return Consulta.findAllByNombreApellidoLikeAndTelefonoLikeAndEmailLikeAndPropiedad(params.nombreApellido,params.telefono,params.email,propiedad)
+            return Consulta.findAllByNombreApellidoLikeAndTelefonoLikeAndEmailLike(params.nombreApellido,params.telefono,params.email,[sort: "estado", order: "desc"])
         
 
     }
