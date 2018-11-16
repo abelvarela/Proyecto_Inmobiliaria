@@ -25,7 +25,7 @@
             </fieldset>
         </g:form>
 
-
+        <h2>Lista:</h2>
         <table class="table">
             <tr>
                 <th>Usuario</th>

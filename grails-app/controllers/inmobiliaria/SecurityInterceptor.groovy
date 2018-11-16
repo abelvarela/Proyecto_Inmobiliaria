@@ -30,6 +30,6 @@ class SecurityInterceptor {
     }
 
     SecurityInterceptor() {
-        // match(controller:"admin")
+        match(controller:"admin")
     }
 }

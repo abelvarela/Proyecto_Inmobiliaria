@@ -10,39 +10,88 @@
         
         <%-- form de busqueda  --%>
         <g:form action="buscarConsulta" method="POST">
+            <h2>Busqueda:</h2>
             <%-- se agrega fieldset para estilo --%>
             <fieldset class="buttons">
-                <h2>Busqueda:</h2>
-                <label for="nombreApellido">Nombre y Apellido: </label>
-                <input type="text" name="nombreApellido" id="nombreApellido">
-
-                <label for="telefono">Telefono: </label>
-                <input type="text" name="telefono" id="telefono">
-
-                <label for="email">Email: </label>
-                <input type="text" name="email" id="email">
-
-                <label for="propiedad">Propiedad: </label>
-                <select name ="propiedad" id="propiedad">
-                    <option value="%%"> Todas </option>                    
-                    <g:each in="${propiedades}">
-                        <option value="${it.id}"> ${it.direccion} </option>
-                    </g:each>
-                </select>
-
-
-                <g:submitButton name="search" class="search" value="Buscar"/>
-                <g:link class="list" action="consulta">Mostrar todas</g:link>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <label for="nombreApellido">Nombre y Apellido: </label>
+                            <input type="text" name="nombreApellido" id="nombreApellido">
+                        </td>
+                        
+                        <td>
+                            <label for="telefono">Telefono: </label>
+                            <input type="text" name="telefono" id="telefono">
+                        </td>
+                        
+                        <td>
+                            <label for="email">Email: </label>
+                            <input type="text" name="email" id="email">
+                        </td>
+                        
+                        <td>
+                            <label for="propiedad">Propiedad: </label>
+                            <select name ="propiedad" id="propiedad">
+                                <option value="%%"> Todas </option>                    
+                                <g:each in="${propiedades}">
+                                    <option value="${it.id}"> ${it.direccion} </option>
+                                </g:each>
+                            </select>
+                        </td>
+                        
+                        <td>
+                            <g:submitButton name="search" class="search" value="Buscar"/>
+                            <g:link class="list" action="consulta">Mostrar todas</g:link>
+                        </td>
+                    </tr>
+                </table>
             </fieldset>
         </g:form>
 
+        <h2>Lista:</h2>
         <table class="table">
             <tr>
-                <th>Nombre y Apellido</th>
-                <th>Telefono</th>
-                <th>Email</th>
-                <th>Fecha</th>
-                <th>Estado</th>
+                <g:form action="ordenarConsulta" method="POST">    
+                    <g:hiddenField name="nombreApellido" value="${params.nombreApellido}"/>
+                    <g:hiddenField name="telefono" value="${params.telefono}"/>
+                    <g:hiddenField name="email" value="${params.email}"/>
+                    <g:hiddenField name="propiedad" value="${params.propiedad}"/>
+                    <g:hiddenField name="orden" value="nombreApellido"/>
+                    <th><g:submitButton name="subnya" value="Nombre y Apellido"/></th>
+                </g:form>
+                <g:form action="ordenarConsulta" method="POST">    
+                    <g:hiddenField name="nombreApellido" value="${params.nombreApellido}"/>
+                    <g:hiddenField name="telefono" value="${params.telefono}"/>
+                    <g:hiddenField name="email" value="${params.email}"/>
+                    <g:hiddenField name="propiedad" value="${params.propiedad}"/>
+                    <g:hiddenField name="orden" value="telefono"/>
+                    <th><g:submitButton name="subtel" value="Telefono"/></th>
+                </g:form>
+                <g:form action="ordenarConsulta" method="POST">    
+                    <g:hiddenField name="nombreApellido" value="${params.nombreApellido}"/>
+                    <g:hiddenField name="telefono" value="${params.telefono}"/>
+                    <g:hiddenField name="email" value="${params.email}"/>
+                    <g:hiddenField name="propiedad" value="${params.propiedad}"/>
+                    <g:hiddenField name="orden" value="email"/>
+                    <th><g:submitButton name="subemail" value="Email"/></th>
+                </g:form>
+                <g:form action="ordenarConsulta" method="POST">    
+                    <g:hiddenField name="nombreApellido" value="${params.nombreApellido}"/>
+                    <g:hiddenField name="telefono" value="${params.telefono}"/>
+                    <g:hiddenField name="email" value="${params.email}"/>
+                    <g:hiddenField name="propiedad" value="${params.propiedad}"/>
+                    <g:hiddenField name="orden" value="fecha"/>
+                    <th><g:submitButton name="subfecha" value="Fecha"/></th>
+                </g:form>
+                <g:form action="ordenarConsulta" method="POST">    
+                    <g:hiddenField name="nombreApellido" value="${params.nombreApellido}"/>
+                    <g:hiddenField name="telefono" value="${params.telefono}"/>
+                    <g:hiddenField name="email" value="${params.email}"/>
+                    <g:hiddenField name="propiedad" value="${params.propiedad}"/>
+                    <g:hiddenField name="orden" value="estado"/>
+                    <th><g:submitButton name="subestado" value="Estado"/></th>
+                </g:form>
                 <th>Propiedad</th>
                 <th>Acción</th>
             </tr>

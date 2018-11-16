@@ -147,6 +147,7 @@
                     <g:hiddenField name="orden" value="email"/>
                     <th><g:submitButton name="subemail" value="Email"/></th>
                 </g:form>
+                <th>Ver</th>
             </tr>
             <g:each in="${listado?}">
                 <tr>

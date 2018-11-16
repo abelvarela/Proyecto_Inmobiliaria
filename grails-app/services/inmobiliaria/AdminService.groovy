@@ -247,34 +247,6 @@ class AdminService {
     }
 
     def buscarContrato(Map params){
-        // if(params.tipo!="" && params.ubicacion!=""){
-        //     return Contrato.findAllByTipoAndUbicacion(params.tipo,params.ubicacion)
-        // }else if(params.tipo!="" && params.ubicacion==""){
-        //     return Contrato.findAllByTipo(params.tipo)
-        // }else if(params.tipo=="" && params.ubicacion!="") {
-        //     return Contrato.findAllByUbicacion(params.ubicacion)
-        // }else{
-        //     return Contrato.findAll()
-        // }
-
-
-        // return Contrato.findAll("from Contrato as c where c.cliente.id = :cliente and c.propietario.id = :propietario and c.propiedad.tipo = :tipo and c.propiedad.ubicacion = :ubicacion",
-        // [cliente: new Long (params.cliente), propietario: new Long (params.propietario),
-        // tipo: params.tipo, ubicacion: params.ubicacion])
-
-        // if(params.tipo!="" && params.ubicacion!=""){
-        //     return Contrato.findAllByTipoAndUbicacion(params.tipo,params.ubicacion)
-        // }else if(params.tipo!="" && params.ubicacion==""){
-        //     return Contrato.findAllByTipo(params.tipo)
-        // }else if(params.tipo=="" && params.ubicacion!="") {
-        //     return Contrato.findAllByUbicacion(params.ubicacion)
-        // }else{
-        //     return Contrato.findAll()
-        // }
-        
-        // return Contrato.findAll("from Contrato as c where c.cliente.id like :cliente and ")
-        
-
 
         if(params.cliente!="%%" && params.propietario!="%%"){
             params.cliente = new Long(params.cliente)
@@ -294,15 +266,6 @@ class AdminService {
             return Contrato.findAll("from Contrato as c where c.propiedad.tipo like :tipo and c.propiedad.ubicacion like :ubicacion",
             [tipo: params.tipo, ubicacion: params.ubicacion])
         }
-
-
-
-
-
-
-
-
-
 
     }
 
@@ -340,31 +303,12 @@ class AdminService {
     }
 
     def buscarUsuario(Map params){
-        // if(params.email){
-        //     params.email = '%'+params.email+'%'
-        //     return Usuario.findAllByEmailLike(params.email)
-        // }else if(params.nombreUsuario){
-        //     params.nombreUsuario = '%'+params.nombreUsuario+'%'
-        //     return Usuario.findAllByNombreUsuarioLike(params.nombreUsuario)
-        // }else if(params.apellido){
-        //     params.apellido = '%'+params.apellido+'%'
-        //     return Usuario.findAllByApellidoLike(params.apellido)
-        // }else {
-        //     params.nombre = '%'+params.nombre+'%'
-        //     return Usuario.findAllByNombreLike(params.nombre)
-        // }
-
         params.nombreUsuario = "%" + params.nombreUsuario + "%"
         params.nombre = "%" + params.nombre + "%"
         params.apellido = "%" + params.apellido + "%"
         params.email = "%" + params.email + "%"
 
         return Usuario.findAllByNombreUsuarioLikeAndNombreLikeAndApellidoLikeAndEmailLike(params.nombreUsuario,params.nombre,params.apellido,params.email,[sort: "apellido", order: "asc"])
-
-
-
-
-
     }
 
 // ------------------- FIN USUARIO ----------------------
@@ -377,11 +321,14 @@ class AdminService {
         params.nombreApellido = "%" + params.nombreApellido + "%"
         params.telefono = "%" + params.telefono + "%"
         params.email = "%" + params.email + "%"
+        def listado
         if(propiedad)    
-            return Consulta.findAllByNombreApellidoLikeAndTelefonoLikeAndEmailLikeAndPropiedad(params.nombreApellido,params.telefono,params.email,propiedad,[sort: "estado", order: "desc"])
+            listado = Consulta.findAllByNombreApellidoLikeAndTelefonoLikeAndEmailLikeAndPropiedad(params.nombreApellido,params.telefono,params.email,propiedad,[sort: "estado", order: "desc"])
         else
-            return Consulta.findAllByNombreApellidoLikeAndTelefonoLikeAndEmailLike(params.nombreApellido,params.telefono,params.email,[sort: "estado", order: "desc"])
+            listado = Consulta.findAllByNombreApellidoLikeAndTelefonoLikeAndEmailLike(params.nombreApellido,params.telefono,params.email,[sort: "estado", order: "desc"])
         
+
+
 
     }
 

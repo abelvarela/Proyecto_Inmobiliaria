@@ -9,52 +9,76 @@
         <h1 style="text-align: center"> Propiedad </h1>
         <%-- form de busqueda  --%>
         <g:form action="buscarPropiedad" method="POST">
+            <h2>Busqueda:</h2>
             <%-- se agrega fieldset para estilo --%>
             <fieldset class="buttons">
-                <h2>Busqueda:</h2>
-                <label for="tipo">Tipo: </label>
-                <select name ="tipo" id="tipo">
-                    <option value="%%"> Todos </option>
-                    <option value="Casa"> Casa </option>
-                    <option value="Departamento"> Departamento </option>
-                    <option value="Local"> Local </option>
-                    <option value="Oficina"> Oficina </option>
-                </select>
-                
-                <label for="ubicacion">Ubicacion: </label>
-                <select name ="ubicacion" id="ubicacion">
-                    <option value="%%"> Todas </option>
-                    <option value="F.M.E."> F.M.E. </option>
-                    <option value="Valle Viejo"> Valle Viejo </option>
-                    <option value="Capital"> Capital </option>
-                    <option value="Ambato"> Ambato </option>
-                </select>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <label for="tipo">Tipo: </label>
+                            <select name ="tipo" id="tipo">
+                                <option value="%%"> Todos </option>
+                                <option value="Casa"> Casa </option>
+                                <option value="Departamento"> Departamento </option>
+                                <option value="Local"> Local </option>
+                                <option value="Oficina"> Oficina </option>
+                            </select>
+                        </td>
+                        
+                        <td>
+                            <label for="ubicacion">Ubicacion: </label>
+                            <select name ="ubicacion" id="ubicacion">
+                                <option value="%%"> Todas </option>
+                                <option value="F.M.E."> F.M.E. </option>
+                                <option value="Valle Viejo"> Valle Viejo </option>
+                                <option value="Capital"> Capital </option>
+                                <option value="Ambato"> Ambato </option>
+                            </select>
+                        </td>
+                        
+                        <td>
+                            <label for="operacion">Operacion: </label>
+                            <select name ="operacion" id="operacion">
+                                <option value="%%"> Todas </option>
+                                <option value="Venta"> Venta </option>
+                                <option value="Alquiler"> Alquiler </option>
+                            </select>
+                        </td>
+                        
+                        <td>
+                            <label for="direccion">Direccion: </label>
+                            <input type="search" name="direccion" id="direccion"/>
+                        </td>
+                    </tr>
 
-                <label for="operacion">Operacion: </label>
-                <select name ="operacion" id="operacion">
-                    <option value="%%"> Todas </option>
-                    <option value="Venta"> Venta </option>
-                    <option value="Alquiler"> Alquiler </option>
-                </select>
-
-                <label for="direccion">Direccion: </label>
-                <input type="search" name="direccion" id="direccion"/>
-
-                <label for="precioMin">Precio Min:</label>
-                <input type="number" name="precioMin" id="precioMin" value="0"/>
-                <label for="precioMax">Precio Max:</label>
-                <input type="number" name="precioMax" id="precioMax" value="9999999999"/>
-                 
-                <g:submitButton name="search" class="search" value="Buscar"/>
-                <g:link class="list" action="propiedad">Mostrar todos</g:link>
-                <g:link class="create" action="altaPropiedad">Crear propiedad</g:link>
+                    <tr>
+                        <td>
+                            <label for="precioMin">Precio Min:</label>
+                            <input type="number" name="precioMin" id="precioMin" value="0"/>
+                        </td>
+                        
+                        <td>
+                            <label for="precioMax">Precio Max:</label>
+                            <input type="number" name="precioMax" id="precioMax" value="9999999999"/>
+                        </td>
+                        
+                        <td>
+                            <g:submitButton name="search" class="search" value="Buscar"/>
+                        </td>
+                        
+                        <td>
+                            <g:link class="list" action="propiedad">Mostrar todos</g:link>
+                            <g:link class="create" action="altaPropiedad">Crear propiedad</g:link>
+                        </td>
+                    </tr>
+                </table>
             </fieldset>
 
         </g:form>
 
         <%-- ${println(params)} --%>
 
-
+        <h2>Lista:</h2>
         <table class="table">
             <tr>
                 <g:form action="ordenarPropiedad" method="POST">    
